@@ -1,18 +1,26 @@
 ﻿<Properties StartupConfiguration="{42290E02-C430-4565-8C9F-D5CCB1A7D7D2}|Default">
-  <MonoDevelop.Ide.ItemProperties.profile FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Program.cs">
+  <MonoDevelop.Ide.ItemProperties.profile PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Views/Shared/_Layout.cshtml">
     <Files>
-      <File FileName="profile/Program.cs" Line="1" Column="1" />
+      <File FileName="profile/Program.cs" Line="17" Column="15" />
+      <File FileName="profile/appsettings.json" Line="1" Column="1" />
+      <File FileName="profile/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="Dockerfile.config" Line="4" Column="1" />
+      <File FileName="profile/Dockerfile.txt" Line="4" Column="54" />
+      <File FileName="profile/Views/Home/Index.cshtml" Line="67" Column="85" />
+      <File FileName="profile/Views/Shared/_Layout.cshtml" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="profile" expanded="True">
             <Node name="profile" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="Shared" expanded="True">
+                  <Node name="_Layout.cshtml" selected="True" />
+                </Node>
               </Node>
-              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
