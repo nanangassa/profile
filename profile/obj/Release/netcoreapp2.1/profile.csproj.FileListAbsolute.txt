@@ -17,7 +17,9 @@
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/About.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Contact.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Index.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Login.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Privacy.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Register.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Shared/Error.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Shared/_Layout.g.cshtml.cs
@@ -30,4 +32,3 @@
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.dll
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.pdb
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.csproj.CopyComplete
-/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Login.g.cshtml.cs
