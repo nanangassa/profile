@@ -32,3 +32,4 @@
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/profile.pdb
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/profile.csproj.CopyComplete
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/profile.csprojAssemblyReference.cache
+/Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Resume.g.cshtml.cs

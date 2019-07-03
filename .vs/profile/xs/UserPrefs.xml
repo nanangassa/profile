@@ -1,33 +1,62 @@
 ﻿<Properties StartupConfiguration="{42290E02-C430-4565-8C9F-D5CCB1A7D7D2}|Default">
   <MonoDevelop.Ide.ItemProperties.profile PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Program.cs">
     <Files>
-      <File FileName="profile/Program.cs" Line="20" Column="1" />
+      <File FileName="profile/Program.cs" Line="21" Column="48" />
       <File FileName="profile/appsettings.json" />
       <File FileName="profile/appsettings.Development.json" />
       <File FileName="profile/Views/Home/Index.cshtml" />
       <File FileName="profile/Views/Shared/_Layout.cshtml" />
       <File FileName="profile/Views/Home/Login.cshtml" />
       <File FileName="profile/Views/Home/Contact.cshtml" />
-      <File FileName="profile/Controllers/HomeController.cs" Line="112" Column="1" />
-      <File FileName="profile/Models/User.cs" />
-      <File FileName="profile/Models/Storecontext.cs" />
-      <File FileName="profile/Models/ErrorViewModel.cs" />
-      <File FileName="profile/Startup.cs" Line="39" Column="17" />
+      <File FileName="profile/Controllers/HomeController.cs" />
+      <File FileName="profile/Startup.cs" />
       <File FileName="profile/Views/Home/Register.cshtml" />
       <File FileName="profile/Properties/launchSettings.json" />
+      <File FileName="profile/Models/User.cs" />
+      <File FileName="profile/Models/Storecontext.cs" />
+      <File FileName="profile/Controllers/UserController.cs" />
+      <File FileName="profile/Views/_ViewStart.cshtml" />
+      <File FileName="profile/Models/ErrorViewModel.cs" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="profile" expanded="True">
+            <Node name="profile" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True" />
+                <Node name="images" expanded="True" />
+              </Node>
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../profile/Controllers/HomeController.cs" line="113" offsetX="-1" offsetY="-1" expression="user" liveUpdate="False" />
+    <Watch file="../../../profile/Controllers/HomeController.cs" line="116" offsetX="-1" offsetY="-1" expression="user" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="114" column="1" />
-      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="117" column="1" />
-      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="120" column="1" />
-      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="122" column="1" />
-      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="107" column="1" />
-      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="101" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="176" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Views/Home/Register.cshtml" relfile="profile/Views/Home/Register.cshtml" line="59" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="32" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="53" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="239" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="332" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Views/Home/Resume.cshtml" relfile="profile/Views/Home/Resume.cshtml" line="16" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="130" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="150" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

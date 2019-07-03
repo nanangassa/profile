@@ -59,12 +59,17 @@ namespace profile
             var conn = new NpgsqlConnection(connString);
 
             services.AddDbContext<Storecontext>(options => options.UseSqlServer(connString));
+            //services.AddDbContext<Storecontext>(options => options.UseNpgsql(connString));
 
             services.AddMvc();
 
             services.AddMemoryCache();
+            services.AddAntiforgery();
+            services.AddAuthenticationCore();
+            services.AddRouting();
 
             services.AddSession();
+            services.AddAuthentication();
             //services.AddMvc(options =>
             //{
             //    options.Filters.Add(new MiddlewareFilterAttribute(typeof(LocalizationPipeline)));
@@ -80,27 +85,34 @@ namespace profile
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-         //   if (env.IsDevelopment())
-         //   {
+            if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
-          //  }
-          //  else
-          //  {
-          //      app.UseExceptionHandler("/Home/Error");
-          //      app.UseHsts();
-          //  }
+              }
+              else
+              {
+                  app.UseExceptionHandler("/Home/Error");
+                  app.UseHsts();
+              }
 
 
-           // app.UseSession();
+            app.UseSession();
+            app.UseMvc();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
+
+                routes.MapRoute("blog", "blog/{*article}",
+           defaults: new { controller = "Blog", action = "Article" });
+
                 routes.MapRoute(
+
+
                     name: "default",
-                    template: "{controller=Home}/{action=Login}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

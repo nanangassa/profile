@@ -16,13 +16,19 @@ namespace profile
         {
             //CreateWebHostBuilder(args).Build().Run();
 
-            var config = new ConfigurationBuilder().AddCommandLine(args).Build();
+            
+            var config = new ConfigurationBuilder()
+                //.AddJsonFile("appsetting.json")
+                .AddCommandLine(args).Build();
+
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                //.Set
                 .UseConfiguration(config)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+
                 .Build();
 
             host.Run();
