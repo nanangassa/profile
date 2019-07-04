@@ -181,14 +181,14 @@ namespace profile.Controllers
 
             string roleid = Request.Form["roleid"];
             string firstname = Request.Form["firstname"].ToString();
-            string lastname = Request.Query["lastname"].ToString();
-            String emailaddress = Request.Query["emailaddress"].ToString();
-            String password = Request.Query["password"].ToString();
-            String DateOfBirth = Request.Query["dateofbirth"].ToString();
-            String City = Request.Query["city"].ToString();
-            String Address = Request.Query["address"].ToString();
-            String PostalCode = Request.Query["postalcode"].ToString();
-            String Country = Request.Query["country"].ToString();
+            string lastname = Request.Form["lastname"].ToString();
+            string emailaddress = Request.Form["emailaddress"].ToString();
+            string password = Request.Form["password"].ToString();
+            string DateOfBirth = Request.Form["dateofbirth"].ToString();
+            string City = Request.Form["city"].ToString();
+            string Address = Request.Form["address"].ToString();
+            string PostalCode = Request.Form["postalcode"].ToString();
+            string Country = Request.Query["country"].ToString();
 
 
             User usr = new User();
@@ -210,13 +210,13 @@ namespace profile.Controllers
             // }
 
             // Connect to a PostgreSQL database
-            NpgsqlConnection conn = new NpgsqlConnection("Server=ec2-54-221-215-228.compute-1.amazonaws.com;User Id=zqfcnlmhuauqhp; " +
-                "Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c;Database=d6bejp4l9a71ps;sslmode=Require;TrustServerCertificate=True");
+          //  NpgsqlConnection conn = new NpgsqlConnection("Server=ec2-54-221-215-228.compute-1.amazonaws.com;User Id=zqfcnlmhuauqhp; " +
+          //      "Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c;Database=d6bejp4l9a71ps;sslmode=Require;TrustServerCertificate=True");
 
-            conn.Open();
+         //   conn.Open();
 
             // Define a query
-            NpgsqlCommand command = new NpgsqlCommand("SELECT (emailaddress, password) FROM users WHERE emailaddress=emailaddress AND password=password", conn);
+         //   NpgsqlCommand command = new NpgsqlCommand("SELECT (emailaddress, password) FROM users WHERE emailaddress=emailaddress AND password=password", conn);
 
 
             //string sql = "INSERT INTO Customers (FirstName,LastName) VALUES ('Test','Tube')";
@@ -228,44 +228,44 @@ namespace profile.Controllers
             //}
 
             // Execute the query and obtain a result set
-            NpgsqlDataReader dr = command.ExecuteReader();
+           // NpgsqlDataReader dr = command.ExecuteReader();
             //NpgsqlDataReader dr2 = command2.ExecuteReader();
 
             // Output rows
             //while (dr.Read())
             //  Console.Write("{0}\t{1} \n", dr[0], dr[1]);
 
-            //var existing = (from users in _dataContext.Users where (users.EmailAddress == user.EmailAddress) select users).FirstOrDefault();
+            var existing = (from users in _dataContext.Users where (users.emailaddress == user.password) select users).FirstOrDefault();
             //string existing = "SELECT emailaddress FROM users WHERE emailaddress = 'existing'";
 
-            if (dr.HasRows)
-            {
-                dr.Read();
-                // usr.EmailAddress = dr["EmailAddress"].ToString();
-                if (dr[0].ToString() == emailaddress && dr[1].ToString() == password)
-                {
-                    RedirectToAction("Register");
-                }
-            }
-            else
-            {
+            //if (dr.HasRows)
+            //{
+            //    dr.Read();
+            //    // usr.EmailAddress = dr["EmailAddress"].ToString();
+            //    if (dr[0].ToString() == emailaddress && dr[1].ToString() == password)
+            //    {
+            //        RedirectToAction("Register");
+            //    }
+            //}
+            //else
+            //{
 
                 //NpgsqlCommand command2 = new NpgsqlCommand("INSERT INTO users (Roleid,FirstName,LastName,EmailAddress,Password,DateOfBirth,City,Address,PostalCode, Country) VALUES (@roleid,@firstname,@lastname,@emailaddress,@password,@DateOfBirth,@City,@Address,@PostalCode,@Country", conn);
                 // NpgsqlDataReader dr2 = command2.ExecuteReader(new { roleid, firstname, lastname, emailaddress, password, DateOfBirth, City, Address, PostalCode, Country });
-                conn.Execute("insert into users (Roleid,FirstName,LastName,EmailAddress,Password,DateOfBirth,City,Address,PostalCode, Country) values (@roleid,@firstname,@lastname,@emailaddress,@password,@DateOfBirth,@City,@Address,@PostalCode,@Country)", new { roleid, firstname, lastname, emailaddress, password, DateOfBirth, City, Address, PostalCode, Country });
+               // conn.Execute("insert into users (Roleid,FirstName,LastName,EmailAddress,Password,DateOfBirth,City,Address,PostalCode, Country) values (@roleid,@firstname,@lastname,@emailaddress,@password,@DateOfBirth,@City,@Address,@PostalCode,@Country)", new { roleid, firstname, lastname, emailaddress, password, DateOfBirth, City, Address, PostalCode, Country });
 
                 //var cmd = new NpgsqlCommand("INSERT INTO table (col1) VALUES (@p)", conn);
 
                // NpgsqlDataReader dr2 = command2.ExecuteReader();
-                conn.Close();
+              //  conn.Close();
 
-                //if (command == null) // ex
-                //{
-                //    _dataContext.Users.Add(user);
-                //    _dataContext.SaveChanges();
-                //}
+                if (existing == null) // ex
+                {
+                    _dataContext.Users.Add(user);
+                    _dataContext.SaveChanges();
+                }
 
-            }
+           // }
             return RedirectToAction("Login");
 
         }

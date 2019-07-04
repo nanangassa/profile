@@ -14,6 +14,8 @@ using Microsoft.Extensions.Options;
 
 using profile.Models;
 using Npgsql;
+using Microsoft.AspNetCore.Identity;
+using System.IO;
 
 namespace profile
 {
@@ -22,6 +24,14 @@ namespace profile
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            {
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddEnvironmentVariables();
+                Configuration = builder.Build();
+            }
         }
 
         public IConfiguration Configuration { get; }
@@ -30,10 +40,10 @@ namespace profile
         public void ConfigureServices(IServiceCollection services)
         {
 
-     
 
 
-           // services
+
+            // services
 
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -49,46 +59,41 @@ namespace profile
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // connection = @"postgres://zqfcnlmhuauqhp:c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c@ec2-54-221-215-228.compute-1.amazonaws.com:5432/d6bejp4l9a71ps;Database=d6bejp4l9a71ps; User Id=zqfcnlmhuauqhp; Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c; Connection Timeout=30; MultipleActiveResultSets=true";
-           //var connection = @"Server=ec2-54-221-215-228.compute-1.amazonaws.com;Database=d6bejp4l9a71ps; User Id=zqfcnlmhuauqhp; Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c; Connection Timeout=30; MultipleActiveResultSets=true ";//Pooling=true;Max Pool Size=100";
-            string connString = "User ID=zqfcnlmhuauqhp;Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c;Server=ec2-54-221-215-228.compute-1.amazonaws.com;Database=d6bejp4l9a71ps;Pooling=true;TrustServerCertificate=True;sslmode=Require";
+            //var connection = @"Server=ec2-54-221-215-228.compute-1.amazonaws.com;Database=d6bejp4l9a71ps; User Id=zqfcnlmhuauqhp; Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c; Connection Timeout=30; MultipleActiveResultSets=true ";//Pooling=true;Max Pool Size=100";
+            // string connString = "User ID=zqfcnlmhuauqhp;Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c;Server=ec2-54-221-215-228.compute-1.amazonaws.com;Database=d6bejp4l9a71ps;Pooling=true;TrustServerCertificate=True;sslmode=Require";
 
             //var connection = Connection Timeout=30; MultipleActiveResultSets=true";
-          //  var conn = new NpgsqlConnection(connString);
+            //  var conn = new NpgsqlConnection(connString);
 
-           services.AddDbContext<Storecontext>(options => options.UseNpgsql(connString));
+            // services.AddDbContext<Storecontext>(options => options.UseSqlServer("DefaultConnection"));
+
+            services.AddDbContext<Storecontext>(options =>
+            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddRouting().
-             //   AddDbContext<Storecontext>().
                 AddMemoryCache().
                 AddAntiforgery().
                 AddSession().
                 AddAuthenticationCore().
                 AddRouting().
+
                 AddAuthentication();
 
-
-            services.AddEntityFrameworkSqlServer();
-            services.AddEntityFrameworkNpgsql().AddMvc();
-            services.AddMvc();
+            services.AddEntityFrameworkSqlServer().AddEntityFrameworkNpgsql().AddMvc();
             services.BuildServiceProvider();
 
 
 
-
-
-            //services.AddDbContext<Storecontext>(options => options.UseNpgsql(connString));
-            //     .AddDbContext<Storecontext>()
             //services.AddMvc(options =>
             //{
             //    options.Filters.Add(new MiddlewareFilterAttribute(typeof(LocalizationPipeline)));
             //});
-            //services.AddSingleton<RequestLocalizationOptions>();
-            //services.AddSingleton<Storecontext>();
-            //services.Add(ServiceDescriptor.Singleton<IStartupFilter, MiddlewareFilterBuilderStartupFilter>());
-            //services.AddIdentityCore<User>()
-            //    .AddEntityFrameworkStores<Storecontext>()
-            //    .AddDefaultTokenProviders();
+          //  services.AddSingleton<RequestLocalizationOptions>();
+           // services.AddSingleton<Storecontext>();
+
+
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
