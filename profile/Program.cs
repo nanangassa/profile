@@ -18,6 +18,7 @@ namespace profile
 
             
             var config = new ConfigurationBuilder()
+
                 //.AddJsonFile("appsetting.json")
                 .AddCommandLine(args).Build();
 
@@ -28,7 +29,6 @@ namespace profile
                 .UseConfiguration(config)
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-
                 .Build();
 
             host.Run();

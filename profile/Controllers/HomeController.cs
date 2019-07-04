@@ -179,16 +179,16 @@ namespace profile.Controllers
            // int Userid = Convert.ToInt16(Request.Query["UserId"]);
            // int roleid = Convert.ToInt32(Request.Query["RoleId"]);
 
-            string roleid = Request.Form["RoleId"];
-            string firstname = Request.Form["FirtName"].ToString();
-            string lastname = Request.Query["LastName"].ToString();
-            String emailaddress = Request.Query["EmailAddress"].ToString();
-            String password = Request.Query["Password"].ToString();
-            String DateOfBirth = Request.Query["DateOfBirth"].ToString();
-            String City = Request.Query["City"].ToString();
-            String Address = Request.Query["Address"].ToString();
-            String PostalCode = Request.Query["PostalCode"].ToString();
-            String Country = Request.Query["Country"].ToString();
+            string roleid = Request.Form["roleid"];
+            string firstname = Request.Form["firstname"].ToString();
+            string lastname = Request.Query["lastname"].ToString();
+            String emailaddress = Request.Query["emailaddress"].ToString();
+            String password = Request.Query["password"].ToString();
+            String DateOfBirth = Request.Query["dateofbirth"].ToString();
+            String City = Request.Query["city"].ToString();
+            String Address = Request.Query["address"].ToString();
+            String PostalCode = Request.Query["postalcode"].ToString();
+            String Country = Request.Query["country"].ToString();
 
 
             User usr = new User();
@@ -196,11 +196,11 @@ namespace profile.Controllers
             if (Request.Query["RoleId"] == "2")
 
                 {
-                    user.RoleId = 2;
+                    user.roleid = 2;
             }
             else
             {
-                user.RoleId = 1;
+                user.roleid = 1;
             }
 
             // using (var connection = new SqlConnection(connString))
@@ -300,50 +300,66 @@ namespace profile.Controllers
         [HttpPost]
         public IActionResult AuthenticateUser()
         {
-            string email = Request.Query["EmailAddress"];
-            string pass = Request.Query["Password"];
-            User usr = new User();
 
-            // var user = (from u in _dataContext.Users where (u.EmailAddress == email && u.Password == pass) select u).FirstOrDefault();
-            // selectedUser = _dataContext.Users.FirstOrDefault(x => x.userid == id);
+            string email = Request.Form["EmailAddress"];
+            string pass = Request.Form["Password"];
 
-
-            // string user = "SELECT emailAddress FROM simple_table WHERE emailAddress = 'email' AND password = 'pass'";
-
-            NpgsqlConnection conn = new NpgsqlConnection("Server=ec2-54-221-215-228.compute-1.amazonaws.com;User Id=zqfcnlmhuauqhp; " +
-                "Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c;Database=d6bejp4l9a71ps;sslmode=Require;TrustServerCertificate=True");
-
-            conn.Open();
-
-            // Define a query
-            NpgsqlCommand command = new NpgsqlCommand("SELECT emailaddress, password FROM users WHERE emailaddress=:email AND password=:pass;", conn);
-
-            // Execute the query and obtain a result set
-            NpgsqlDataReader dr = command.ExecuteReader();
-
-           // if (dr[0] == null)
-           //     return Redirect("Login");   //
-
-            if (dr.HasRows)
+            var user = (from u in _dataContext.Users where (u.emailaddress == email && u.password == pass) select u).FirstOrDefault();
+            if (user != null)
             {
-                dr.Read();
-                
-                    // usr.EmailAddress = dr["EmailAddress"].ToString();
-                    if (dr[0].ToString() == email && dr[1].ToString() == pass)
-                    {
-                        RedirectToAction("Index");
-                    }
-                
+                HttpContext.Session.SetInt32("UserId", user.userid);
+                HttpContext.Session.SetInt32("RoleId", user.roleid);
+                HttpContext.Session.SetString("FN", user.firstname);
+                HttpContext.Session.SetString("LN", user.lastname);
+                HttpContext.Session.SetString("Password", user.password);
+
             }
+
+            return RedirectToAction("Index");
+            //    string email = Request.Query["EmailAddress"];
+            //    string pass = Request.Query["Password"];
+            //    User usr = new User();
+
+            //    // var user = (from u in _dataContext.Users where (u.EmailAddress == email && u.Password == pass) select u).FirstOrDefault();
+            //    // selectedUser = _dataContext.Users.FirstOrDefault(x => x.userid == id);
+
+
+            //    // string user = "SELECT emailAddress FROM simple_table WHERE emailAddress = 'email' AND password = 'pass'";
+
+            //    NpgsqlConnection conn = new NpgsqlConnection("Server=ec2-54-221-215-228.compute-1.amazonaws.com;User Id=zqfcnlmhuauqhp; " +
+            //        "Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c;Database=d6bejp4l9a71ps;sslmode=Require;TrustServerCertificate=True");
+
+            //    conn.Open();
+
+            //    // Define a query
+            //    NpgsqlCommand command = new NpgsqlCommand("SELECT emailaddress, password FROM users WHERE emailaddress=:email AND password=:pass;", conn);
+
+            //    // Execute the query and obtain a result set
+            //    NpgsqlDataReader dr = command.ExecuteReader();
+
+            //   // if (dr[0] == null)
+            //   //     return Redirect("Login");   //
+
+            //    if (dr.HasRows)
+            //    {
+            //        dr.Read();
+
+            //            // usr.EmailAddress = dr["EmailAddress"].ToString();
+            //            if (dr[0].ToString() == email && dr[1].ToString() == pass)
+            //            {
+            //                RedirectToAction("Index");
+            //            }
+
+            //    }
 
             // Output rows
             //  while (dr.Read())
             //     Console.Write("{0}\t{1} \n", dr[0], dr[1]);
 
-            conn.Close();
+            // conn.Close();
 
 
-            return RedirectToAction("Login");
+            //return RedirectToAction("Login");
         }
 
     

@@ -19,6 +19,7 @@
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Login.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Privacy.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Register.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Resume.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Shared/Error.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Shared/_Layout.g.cshtml.cs
@@ -31,5 +32,3 @@
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/profile.dll
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/profile.pdb
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/profile.csproj.CopyComplete
-/Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/profile.csprojAssemblyReference.cache
-/Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Resume.g.cshtml.cs

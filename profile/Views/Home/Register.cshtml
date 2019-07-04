@@ -21,37 +21,37 @@
             <input type="hidden" id="UserId" name="User.UserId" asp-for="userid" class="form-control" required />
             <label>First Name</label>
 
-            <input type="text" id="User.FirstName" name="User.FirstName" asp-for="FirstName" class="form-control" required />
+            <input type="text" id="User.FirstName" name="User.FirstName" asp-for="firstname" class="form-control" required />
             <label>LastName</label>
 
-            <input type="text" id="User.LastName" name="User.LastName" asp-for="LastName" class="form-control" required />
+            <input type="text" id="User.LastName" name="User.LastName" asp-for="lastname" class="form-control" required />
             <label>Email</label>
 
-            <input type="email" id="User.EmailAddress" name="User.EmailAddress" asp-for="EmailAddress" class="form-control" required />
+            <input type="email" id="User.EmailAddress" name="User.EmailAddress" asp-for="emailaddress" class="form-control" required />
             <label>Password</label>
 
-            <input type="password" id="User.Password" name="User.Password" asp-for="Password" class="form-control" required />
+            <input type="password" id="User.Password" name="User.Password" asp-for="password" class="form-control" required />
             <label>Role</label>
 
-            <select name="User.RoleId" id="User.RoleId" asp-for="RoleId " class="form-control" required>
+            <select name="User.RoleId" id="User.RoleId" asp-for="roleid " class="form-control" required>
                 <option value="2">Administrator</option>
                 <option value="1" selected="selected">General User</option>
             </select>
 
             <label align="left">Country: </label>
-            <input asp-for="Country" name="User.Country" class="form-control" required />
+            <input asp-for="country" name="User.Country" class="form-control" required />
 
             <label align="left">Postal Code: </label>
-            <input asp-for="PostalCode" name="User.PostalCode" class="form-control" required />
+            <input asp-for="postalcode" name="User.postalcode" class="form-control" required />
 
             <label align="left">Address: </label>
-            <input asp-for="Address" id="User.Address" name="User.Address" class="form-control" required />
+            <input asp-for="address" id="User.Address" name="User.Address" class="form-control" required />
 
             <label align="left">City: </label>
-            <input asp-for="City" name="User.City" class="form-control" required />
+            <input asp-for="city" name="User.City" class="form-control" required />
 
             <label align="left">Date Of Birth: </label>
-            <input asp-for="DateOfBirth" name="User.DateOfBirth" class="form-control" type="date" required />
+            <input asp-for="dateofbirth" name="User.DateOfBirth" class="form-control" type="date" required />
 
             <hr />
 

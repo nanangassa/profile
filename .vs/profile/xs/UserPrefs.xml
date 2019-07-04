@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{42290E02-C430-4565-8C9F-D5CCB1A7D7D2}|Default">
   <MonoDevelop.Ide.ItemProperties.profile PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Startup.cs">
     <Files>
-      <File FileName="profile/Program.cs" Line="21" Column="48" />
+      <File FileName="profile/Program.cs" Line="34" Column="1" />
       <File FileName="profile/appsettings.json" />
       <File FileName="profile/appsettings.Development.json" />
       <File FileName="profile/Views/Home/Index.cshtml" />
@@ -10,7 +10,7 @@
       <File FileName="profile/Views/Home/Login.cshtml" />
       <File FileName="profile/Views/Home/Contact.cshtml" />
       <File FileName="profile/Controllers/HomeController.cs" />
-      <File FileName="profile/Startup.cs" />
+      <File FileName="profile/Startup.cs" Line="58" Column="1" />
       <File FileName="profile/Views/Home/Register.cshtml" />
       <File FileName="profile/Properties/launchSettings.json" />
       <File FileName="profile/Models/User.cs" />
@@ -18,6 +18,9 @@
       <File FileName="profile/Controllers/UserController.cs" />
       <File FileName="profile/Views/_ViewStart.cshtml" />
       <File FileName="profile/Models/ErrorViewModel.cs" />
+      <File FileName="profile/Views/Home/Resume.cshtml" />
+      <File FileName="profile/wwwroot/css/site.css" />
+      <File FileName="profile/Dockerfile" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -26,15 +29,7 @@
             <Node name="profile" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
-                <Node name="Shared" expanded="True" />
-              </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True" />
-                <Node name="images" expanded="True" />
-              </Node>
-              <Node name="Program.cs" selected="True" />
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -53,10 +48,17 @@
       <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="32" column="1" />
       <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="53" column="1" />
       <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="239" column="1" />
-      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="332" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="348" column="1" />
       <Breakpoint file="/Users/TheKing/Projects/profile/profile/Views/Home/Resume.cshtml" relfile="profile/Views/Home/Resume.cshtml" line="16" column="1" />
       <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="130" column="1" />
       <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="150" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Views/Home/Resume.cshtml" relfile="profile/Views/Home/Resume.cshtml" line="5" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="307" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Models/User.cs" relfile="profile/Models/User.cs" line="92" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Models/Storecontext.cs" relfile="profile/Models/Storecontext.cs" line="26" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Models/Storecontext.cs" relfile="profile/Models/Storecontext.cs" line="30" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/appsettings.json" relfile="profile/appsettings.json" line="13" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Startup.cs" relfile="profile/Startup.cs" line="53" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

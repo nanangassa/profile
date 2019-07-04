@@ -28,7 +28,7 @@ namespace profile.Models
 
        // [ForeignKey("Standard")]
         [Required]
-        public int RoleId
+        public int roleid
         {
             get;
             set;
@@ -37,7 +37,7 @@ namespace profile.Models
 
         [Required]
         [StringLength(50)]
-        public string FirstName
+        public string firstname
         {
             get;
             set;
@@ -46,7 +46,7 @@ namespace profile.Models
 
         [Required]
         [StringLength(50)]
-        public string LastName
+        public string lastname
         {
             get;
             set;
@@ -55,7 +55,7 @@ namespace profile.Models
 
         [Required]
         [StringLength(50)]
-        public string EmailAddress
+        public string emailaddress
         {
             get;
             set;
@@ -64,7 +64,7 @@ namespace profile.Models
 
         [Required]
         [StringLength(50)]
-        public string Password
+        public string password
         {
             get;
             set;
@@ -73,7 +73,7 @@ namespace profile.Models
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime DateOfBirth
+        public DateTime dateofbirth
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace profile.Models
 
         [Required]
         [StringLength(1000)]
-        public string City
+        public string city
         {
             get;
             set;
@@ -89,7 +89,7 @@ namespace profile.Models
 
         [Required]
         [StringLength(1000)]
-        public string Address
+        public string address
         {
             get;
             set;
@@ -97,7 +97,7 @@ namespace profile.Models
 
         [Required]
         [StringLength(1000)]
-        public string PostalCode
+        public string postalcode
         {
             get;
             set;
@@ -105,7 +105,7 @@ namespace profile.Models
 
         [Required]
         [StringLength(1000)]
-        public string Country
+        public string country
         {
             get;
             set;
