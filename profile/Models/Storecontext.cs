@@ -18,7 +18,8 @@ namespace profile.Models
         public DbSet<Role> Roles { get; set; }
 
         public Storecontext(DbContextOptions<Storecontext> options)
-               : base(options)
+               //: base(options)
+               : base (options)
         {
             //options.Entity<User>().HasKey(u => new { u.Id, u.OrganizationId });
            // options.<User>().Property(x => x.Id).ValueGeneratedOnAdd();
@@ -28,8 +29,18 @@ namespace profile.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // PostgreSQL uses the public schema by default - not dbo.
-            modelBuilder.HasDefaultSchema("public").ForNpgsqlUseIdentityColumns();
+            //modelBuilder.HasDefaultSchema("public");
+            modelBuilder.ForNpgsqlUseIdentityColumns();
             base.OnModelCreating(modelBuilder);
+
+            // user
+            var user = modelBuilder.Entity<User>().ToTable("users");
+                    //user.ToTable("userS")
+                    //  .HasKey(t => t.userid)
+                    //.Property(t => t.userid
+                    //.HasColumnName("id");
+
+           // base.OnModelCreating(modelBuilder);
         }
 
        // protected override void OnModelCreating(ModelBuilder modelBuilder)

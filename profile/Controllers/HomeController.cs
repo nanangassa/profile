@@ -179,7 +179,7 @@ namespace profile.Controllers
            // int Userid = Convert.ToInt16(Request.Query["UserId"]);
            // int roleid = Convert.ToInt32(Request.Query["RoleId"]);
 
-            string roleid = Request.Form["roleid"];
+            string roleid = Request.Form["roleid"].ToString();
             string firstname = Request.Form["firstname"].ToString();
             string lastname = Request.Form["lastname"].ToString();
             string emailaddress = Request.Form["emailaddress"].ToString();
@@ -196,11 +196,11 @@ namespace profile.Controllers
             if (Request.Query["RoleId"] == "2")
 
                 {
-                    user.roleid = 2;
+                    user.roleid = "2";
             }
             else
             {
-                user.roleid = 1;
+                user.roleid = "1";
             }
 
             // using (var connection = new SqlConnection(connString))
@@ -308,14 +308,16 @@ namespace profile.Controllers
             if (user != null)
             {
                 HttpContext.Session.SetInt32("UserId", user.userid);
-                HttpContext.Session.SetInt32("RoleId", user.roleid);
+                HttpContext.Session.SetString("RoleId", user.roleid);
                 HttpContext.Session.SetString("FN", user.firstname);
                 HttpContext.Session.SetString("LN", user.lastname);
                 HttpContext.Session.SetString("Password", user.password);
+                return RedirectToAction("Index");
+
 
             }
+            return RedirectToAction("Login");
 
-            return RedirectToAction("Index");
             //    string email = Request.Query["EmailAddress"];
             //    string pass = Request.Query["Password"];
             //    User usr = new User();

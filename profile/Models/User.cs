@@ -28,7 +28,7 @@ namespace profile.Models
 
         //[ForeignKey("Standard")]
         [Required]
-        public int roleid
+        public string roleid
         {
             get;
             set;
