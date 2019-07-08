@@ -37,3 +37,5 @@
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/profile.Views.pdb
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.Views.pdb
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.csproj.CopyComplete
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.csprojAssemblyReference.cache
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/ViewBadwords.g.cshtml.cs

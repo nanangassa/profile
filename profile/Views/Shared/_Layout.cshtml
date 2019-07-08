@@ -68,7 +68,7 @@
         {
                     <li><a asp-controller="Home" asp-action="EditProfile" asp-route-id="@Context.Session.GetInt32("UserId")">Edit Profile</a><br /></li>
 
-                    @if (Context.Session.GetInt32("RoleId") == 2)
+                    @if (Context.Session.GetString("RoleId") == "2")
             {
                     <li> <a asp-controller="Home" class="pull-right" asp-action="ViewBadWords">View BadWords</a></li>
             }

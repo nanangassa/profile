@@ -394,7 +394,7 @@ namespace profile.Controllers
                 userid = (int)HttpContext.Session.GetInt32("UserId"),
                 blogpostid = Convert.ToInt32(Request.Form["blogpostid"]),
                 content = Request.Form["content"]
-               
+
             };
 
             if (comments != null)
@@ -464,7 +464,7 @@ namespace profile.Controllers
                 // Photo[] photos = IPhotos.ToArray<Photo>();
               //  blogPostView.Photos = IPhotos.ToList();
 
-             //   blogPostView.User = (from user in _dataContext.Users where user.userid == post.userid select user).FirstOrDefault();
+                blogPostView.User = (from user in _dataContext.Users where user.userid == post.userid select user).FirstOrDefault();
                 return View(blogPostView);
             }
             else
@@ -615,6 +615,8 @@ namespace profile.Controllers
             userToUpdate.city = user.city;
             userToUpdate.country = user.country;
             userToUpdate.postalcode = user.postalcode;
+            userToUpdate.roleid = user.roleid;
+
 
             _dataContext.SaveChanges();
             return RedirectToAction("Index");

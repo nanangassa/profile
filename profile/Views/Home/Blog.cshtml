@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            @if (Context.Session.GetInt32("RoleId") == 2 && Context.Session.GetString("UserId") != null)
+            @if (Context.Session.GetString("RoleId") == "2" && Context.Session.GetString("UserId") != null)
             {
                 <a class="btn btn-xs btn-primary" asp-controller="Home" asp-action="EditBlogPost" asp-route-id="@item.blogpostid">Edit Post</a>
                 <a class="btn btn-xs btn-danger" asp-controller="Home" asp-action="DeleteBlogPost" asp-route-id="@item.blogpostid" onclick="return confirm('Are you sure to delete?');" asp-route-id="@item.blogpostid">Delete Post</a>

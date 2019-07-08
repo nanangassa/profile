@@ -1,20 +1,20 @@
 ﻿<Properties StartupConfiguration="{42290E02-C430-4565-8C9F-D5CCB1A7D7D2}|Default">
   <MonoDevelop.Ide.ItemProperties.profile PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Views/Home/Login.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Views/Home/ViewBadwords.cshtml">
     <Files>
       <File FileName="profile/Program.cs" Line="34" Column="1" />
       <File FileName="profile/appsettings.json" />
       <File FileName="profile/appsettings.Development.json" />
       <File FileName="profile/Views/Home/Index.cshtml" Line="1" Column="1" />
-      <File FileName="profile/Views/Shared/_Layout.cshtml" Line="1" Column="1" />
+      <File FileName="profile/Views/Shared/_Layout.cshtml" Line="71" Column="51" />
       <File FileName="profile/Views/Home/Login.cshtml" Line="1" Column="1" />
       <File FileName="profile/Views/Home/Contact.cshtml" Line="1" Column="1" />
-      <File FileName="profile/Controllers/HomeController.cs" Line="421" Column="35" />
-      <File FileName="profile/Startup.cs" Line="61" Column="1" />
+      <File FileName="profile/Controllers/HomeController.cs" Line="618" Column="46" />
+      <File FileName="profile/Startup.cs" Line="66" Column="35" />
       <File FileName="profile/Views/Home/Register.cshtml" Line="23" Column="42" />
       <File FileName="profile/Properties/launchSettings.json" />
       <File FileName="profile/Models/User.cs" Line="22" Column="1" />
-      <File FileName="profile/Models/Storecontext.cs" Line="69" Column="6" />
+      <File FileName="profile/Models/Storecontext.cs" Line="13" Column="1" />
       <File FileName="profile/Controllers/UserController.cs" Line="1" Column="1" />
       <File FileName="profile/Views/_ViewStart.cshtml" Line="2" Column="1" />
       <File FileName="profile/Models/ErrorViewModel.cs" Line="1" Column="1" />
@@ -24,19 +24,20 @@
       <File FileName="profile/Views/Home/Privacy.cshtml" />
       <File FileName="profile/Models/Role.cs" Line="1" Column="1" />
       <File FileName="profile/profile.csproj" />
-      <File FileName="profile/Models/Comment.cs" Line="1" Column="1" />
-      <File FileName="profile/Models/BlogPost.cs" Line="7" Column="2" />
-      <File FileName="profile/Views/Home/AddBlogPost.cshtml" Line="10" Column="15" />
-      <File FileName="profile/Views/Home/DisplayFullPost.cshtml" Line="19" Column="21" />
-      <File FileName="profile/ViewModels/ViewModels.cs" Line="9" Column="35" />
+      <File FileName="profile/Models/Comment.cs" Line="12" Column="19" />
+      <File FileName="profile/Models/BlogPost.cs" Line="4" Column="3" />
+      <File FileName="profile/Views/Home/AddBlogPost.cshtml" Line="10" Column="1" />
+      <File FileName="profile/Views/Home/DisplayFullPost.cshtml" Line="18" Column="26" />
+      <File FileName="profile/ViewModels/ViewModels.cs" Line="9" Column="3" />
       <File FileName="profile/Views/Home/EditPost.cshtml" Line="29" Column="9" />
-      <File FileName="profile/Views/Home/Blog.cshtml" Line="36" Column="77" />
+      <File FileName="profile/Views/Home/Blog.cshtml" Line="44" Column="43" />
       <File FileName="profile/Views/Home/EditProfile.cshtml" Line="2" Column="1" />
       <File FileName="profile/Models/BlogPhoto.cshtml" />
-      <File FileName="profile/Models/BlogPhotos.cs" Line="1" Column="1" />
-      <File FileName="profile/Models/BadWord.cs" Line="1" Column="1" />
+      <File FileName="profile/Models/BlogPhotos.cs" Line="2" Column="1" />
+      <File FileName="profile/Models/BadWord.cs" Line="9" Column="21" />
       <File FileName="../../.nuget/packages/microsoft.aspnetcore.razor.design/2.1.2/build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.CodeGeneration.targets" Line="121" Column="5" />
       <File FileName="profile/Views/Home/About.cshtml" Line="1" Column="1" />
+      <File FileName="profile/Views/Home/ViewBadwords.cshtml" Line="6" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -48,7 +49,7 @@
               <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True">
-                  <Node name="Login.cshtml" selected="True" />
+                  <Node name="ViewBadwords.cshtml" selected="True" />
                 </Node>
                 <Node name="Shared" expanded="True" />
               </Node>
@@ -67,8 +68,11 @@
       <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="411" column="1" />
       <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="468" column="1" />
       <Breakpoint file="/Users/TheKing/.nuget/packages/microsoft.aspnetcore.razor.design/2.1.2/build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.CodeGeneration.targets" line="147" column="1" />
-      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="414" column="1" />
       <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="415" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Views/Home/DisplayFullPost.cshtml" relfile="profile/Views/Home/DisplayFullPost.cshtml" line="18" column="26" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="410" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="412" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Views/Home/Blog.cshtml" relfile="profile/Views/Home/Blog.cshtml" line="44" column="57" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
