@@ -52,6 +52,10 @@
 
                     <ul class="nav navbar-nav navbar-brand">
 
+                           @if (@Context.Session.GetString("FN") == null)
+                        {
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    }
                         <li><a asp-area="" asp-controller="Home" asp-action="Resume">Resume</a></li>
                         <li><a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a></li>
 
@@ -59,7 +63,7 @@
 
                         @if (@Context.Session.GetString("FN") == null)
                         {
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>*@
                     <li><a asp-area="" asp-controller="Home" asp-action="Register" class="navbar-right">Register</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="LogIn">Log In</a></li>
                         }
