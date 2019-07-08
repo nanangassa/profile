@@ -1,0 +1,79 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model profile.ViewModels.BlogPostViewModel
+@using Microsoft.AspNetCore.Http
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+
+
+<div class="container">
+    <div class="jumbotron">
+        <span class="glyphicon glyphicon-book">
+            <span>
+                <b>@this.Model.BlogPost.title</b>
+                Written By:@Model.User.firstname @Model.User.lastname<br />
+                Posted On: @Model.BlogPost.posted
+                UserId: @Model.BlogPost.userid
+                Poster Email: @Model.User.emailaddress<br />
+
+            </span>
+        </span>
+        <p>@Model.BlogPost.content</p>
+
+    </div>
+    <div style="width: auto; display: block; border: 1px solid DarkGrey; background-color: LightGrey; margin: 10px 0px 10px 0px; padding: 0px 20px 5px 20px; border-radius: 10px;">
+
+        @if (Model.Comments == null)
+        {
+
+            @if (Context.Session.GetString("UserId") != null)
+            {
+                <p>No comments, Add a comment here...</p>
+
+            }
+            else
+            {
+                <p>No comments</p>
+
+            }
+        }
+
+        else
+        {
+
+            <h3>Comments</h3>
+            @foreach (var c in Model.Comments)
+            {
+                <div style="width: auto; display: block; border: 1px solid DarkGrey; background-color: LightGrey; margin: 10px 0px 10px 0px; padding: 0px 20px 5px 20px; border-radius: 10px;">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <p>@c.Comment.content</p>
+
+                    <span>
+                        By: @c.Author
+                    </span>
+                </div>
+            }
+        }
+
+        <hr />
+        @if (Context.Session.GetString("UserId") != null)
+        {
+            <div class="form-group">
+                <h5>Add a comment</h5>
+                <form asp-controller="Home" asp-action="DisplayFullPost">
+                    <input type="hidden" name="BlogPostId" value="@Model.BlogPost.blogpostid" />
+                    <textarea type="text" name="Content" data-length="5000" class="form-control"></textarea><br />
+                    <button class="btn btn-large btn-success" type="submit">Submit</button>
+                </form>
+            </div>
+
+        }
+
+    </div>
+</div>
+

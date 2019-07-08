@@ -14,7 +14,12 @@
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/profile.TagHelpers.output.cache
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/profile.RazorCoreGenerate.cache
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/About.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/AddBlogPost.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Blog.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Contact.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/DisplayFullPost.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/EditPost.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/EditProfile.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Login.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Debug/netcoreapp2.1/Razor/Views/Home/Privacy.g.cshtml.cs

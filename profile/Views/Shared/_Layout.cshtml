@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html>
-<html>
+﻿    @using Microsoft.AspNetCore.Http
+    @*@using profile.Models*@
+
+    <!DOCTYPE html>
+    <html>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,16 +36,58 @@
                     </button>
                     @*<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Home</a>*@
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>*@
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        @*<li><a asp-area="" asp-controller="Home" asp-action="Login">LogIn</a></li>*@
-                        @*<li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>*@
-                        <li><a asp-area="" asp-controller="Home" asp-action="Resume">Resume</a></li>
+                @*<div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Login">LogIn</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Resume">Resume</a></li>
 
+                        </ul>
+                    </div>*@
+
+                <div class="navbar-collapse collapse ">@*navbar-right">*@
+
+                    <ul class="nav navbar-nav navbar-brand">
+
+                        <li><a asp-area="" asp-controller="Home" asp-action="Resume">Resume</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a></li>
+
+
+
+                        @if (@Context.Session.GetString("FN") == null)
+                        {
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Register" class="navbar-right">Register</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="LogIn">Log In</a></li>
+                        }
+
+                        @if (Context.Session.GetInt32("UserId") != null)
+        {
+                    <li><a asp-controller="Home" asp-action="EditProfile" asp-route-id="@Context.Session.GetInt32("UserId")">Edit Profile</a><br /></li>
+
+                    @if (Context.Session.GetInt32("RoleId") == 2)
+            {
+                    <li> <a asp-controller="Home" class="pull-right" asp-action="ViewBadWords">View BadWords</a></li>
+            }
+        }
+
+                        @if (@Context.Session.GetString("FN") != null)
+                        {
+                    <li><a asp-area="" asp-controller="Home" asp-action="Logout" class="navbar-right">Log Out</a></li>
+                        }
                     </ul>
+
+                    @*Space under links when not logged in*@
+                    <a style="visibility:hidden"> ok </a>
+                    @if (@Context.Session.GetString("FN") != null || @Context.Session.GetString("LN") != null)
+                    {
+                        <div class="text-right">
+                            <a> Welcome @Context.Session.GetString("FN") @Context.Session.GetString("LN") </a>
+                        </div>
+                    }
                 </div>
             </div>
         </nav>
@@ -67,17 +112,15 @@
                     asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                     asp-fallback-test="window.jQuery"
                     crossorigin="anonymous"
-                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-            </script>
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
                     asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                     asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
                     crossorigin="anonymous"
-                    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
-            </script>
+                    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"></script>
             <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>
 
         @RenderSection("Scripts", required: false)
     </body>
-</html>
+    </html>

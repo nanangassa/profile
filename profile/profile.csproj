@@ -20,4 +20,10 @@
     <PackageReference Include="Dapper" Version="1.60.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Models\BlogPhoto.cshtml" />
+  </ItemGroup>
 </Project>

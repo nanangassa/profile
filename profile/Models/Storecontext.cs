@@ -6,6 +6,12 @@ using Microsoft.Extensions.Configuration;
 //using System.Collections.Generic;
 //using System.ComponentModel.DataAnnotations;
 using System.IO;
+
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+//sing RazorPagesContacts.Data;
+
 //using System.Linq;
 //using System.Threading.Tasks;
 
@@ -16,6 +22,11 @@ namespace profile.Models
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+         public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Photo> Photos { get; set; }
+        public DbSet<BadWord> BadWords { get; set; }
+
 
         public Storecontext(DbContextOptions<Storecontext> options)
                //: base(options)

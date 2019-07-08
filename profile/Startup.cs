@@ -25,7 +25,10 @@ namespace profile
         {
             Configuration = configuration;
 
+
+
             {
+
                 var builder = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -40,21 +43,12 @@ namespace profile
         public void ConfigureServices(IServiceCollection services)
         {
 
-
-
-
-            // services
-
-
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -66,8 +60,7 @@ namespace profile
             //  var conn = new NpgsqlConnection(connString);
 
             // services.AddDbContext<Storecontext>(options => options.UseSqlServer("DefaultConnection"));
-
-            services.AddDbContext<Storecontext>(options =>
+               services.AddDbContext<Storecontext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddRouting().
@@ -76,7 +69,6 @@ namespace profile
                 AddSession().
                 AddAuthenticationCore().
                 AddRouting().
-
                 AddAuthentication();
 
             services.AddEntityFrameworkSqlServer().AddEntityFrameworkNpgsql().AddMvc();
@@ -94,7 +86,6 @@ namespace profile
 
         }
 
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -108,7 +99,6 @@ namespace profile
                   app.UseHsts();
               }
 
-
             app.UseSession();
             app.UseMvc();
             app.UseHttpsRedirection();
@@ -117,8 +107,6 @@ namespace profile
 
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
-
-
 
             //SignalR
             //app.UseSignalR();
@@ -131,7 +119,6 @@ namespace profile
            defaults: new { controller = "Blog", action = "Article" });
 
                 routes.MapRoute(
-
 
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

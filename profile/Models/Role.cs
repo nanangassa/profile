@@ -13,10 +13,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace profile.Models
 {
 
-	public class Role
-	{
-		[Required]
-		public int RoleId
+    //[Table("role")]
+    public class Role
+    {
+        [Required]
+		public int roleid
 		{
 			get;
 			set;
@@ -25,7 +26,7 @@ namespace profile.Models
 
 		[Required]
 		[StringLength(100)]
-		public string Name
+		public string name
 		{
 			get;
 			set;
