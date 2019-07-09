@@ -15,8 +15,10 @@
 <h3> View Badwords </h3>
 <div class="container">
     <form asp-controller="Home" asp-action="AddBadWordToDatabase">
+        <hr />
+        <br />
         <fieldset>
-            <legend>Add Bad Word</legend>
+            <legend>Add a bad word, it will be hidden for comments</legend>
             <input type="text" name="badword" />
             <input type="submit" value="Add" />
         </fieldset>

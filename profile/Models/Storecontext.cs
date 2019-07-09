@@ -1,19 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-//using Newtonsoft.Json;
-//using profile.Models;
-//using System;
-//using System.Collections.Generic;
-//using System.ComponentModel.DataAnnotations;
 using System.IO;
-
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-//sing RazorPagesContacts.Data;
-
-//using System.Linq;
-//using System.Threading.Tasks;
 
 namespace profile.Models
 {
@@ -39,24 +26,13 @@ namespace profile.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // PostgreSQL uses the public schema by default - not dbo.
-            //modelBuilder.HasDefaultSchema("public");
+
             modelBuilder.ForNpgsqlUseIdentityColumns();
             base.OnModelCreating(modelBuilder);
 
-            // user
-            var user = modelBuilder.Entity<User>().ToTable("users");
-                    //user.ToTable("userS")
-                    //  .HasKey(t => t.userid)
-                    //.Property(t => t.userid
-                    //.HasColumnName("id");
-
-           // base.OnModelCreating(modelBuilder);
+            //var user = modelBuilder.Entity<User>().ToTable("users");
         }
-
-       // protected override void OnModelCreating(ModelBuilder modelBuilder)
-    //=> modelBuilder.ForNpgsqlUseIdentityColumns();
-
+ 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 

@@ -64,6 +64,7 @@ namespace profile.Models
 
         [Required]
         [StringLength(50)]
+        [DataType(DataType.Password)]
         public string password
         {
             get;

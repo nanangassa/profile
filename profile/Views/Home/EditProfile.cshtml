@@ -15,9 +15,16 @@
     Layout = "_Layout";
     // ViewBag.Title = "";
 }
+
+<br />
+<br />
 <div class="container">
     <h2> Edit Profile </h2>
     <form asp-controller="Home" asp-action="EditProfile" method="post">
+        @Html.AntiForgeryToken()
+
+        <hr />
+        <br />
         <input type="hidden" value="@Model.userid" asp-for="userid" name="UserId" />
         <div class="form-group col-sm-8">
             <label align="left">First Name: </label>

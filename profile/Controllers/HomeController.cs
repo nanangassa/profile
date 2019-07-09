@@ -2,21 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using profile.Models;
-using System.Data;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-
 using profile.ViewModels;
-
-using Newtonsoft.Json;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 
@@ -190,6 +178,7 @@ namespace profile.Controllers
         //  [Route("Home/Register")]
         //  [HttpPost("UserController/{id}")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(User user)
         {
 
@@ -310,6 +299,7 @@ namespace profile.Controllers
 
         //[HttpPost("AuthenticateUser/{id}")]//("Home/Index/{id}")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AuthenticateUser()
         {
 
@@ -334,7 +324,7 @@ namespace profile.Controllers
 
         public IActionResult EditBlogPost(int id)
         {
-            HttpContext.Session.SetInt32("editBlogId", id);
+           // HttpContext.Session.SetInt32("editBlogId", id);
             var editPost = (from b in _dataContext.BlogPosts where b.blogpostid == id select b).FirstOrDefault();
             return View(editPost);
         }
@@ -356,6 +346,7 @@ namespace profile.Controllers
         }
 
         public IActionResult AddBlogPost()
+
         {
             return View();
         }
@@ -364,11 +355,8 @@ namespace profile.Controllers
         public IActionResult AddBlogPost(BlogPost blogPost)
         {
 
-          //..blogPost = new BlogPost();
             if (HttpContext.Session.GetInt32("UserId") != null)
             {
-
-               // blogPost.blogpostid = Request.Form["blogpostid"].;
                 blogPost.content = Request.Form["content"].ToString();
                 blogPost.title = Request.Form["title"].ToString();
                 blogPost.posted = Convert.ToDateTime(DateTime.Now);
@@ -447,7 +435,7 @@ namespace profile.Controllers
                         {
                             if (badw.word.ToLower().Equals(words[i].ToLower()))
                             {
-                                words[i] = "******";
+                                words[i] = "******BadWord******";
                             }
                         }
                     }
@@ -485,7 +473,7 @@ namespace profile.Controllers
             _dataContext.BlogPosts.Remove(deleteBlogs);
             _dataContext.Entry(deleteBlogs).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
 
-            _dataContext.Photos.RemoveRange(from c in _dataContext.Photos where c.photoid == id select c);
+            //_dataContext.Photos.RemoveRange(from c in _dataContext.Photos where c.photoid == id select c);
             _dataContext.SaveChanges();
 
             return RedirectToAction("Blog");
@@ -509,7 +497,7 @@ namespace profile.Controllers
 
         public IActionResult DeleteBadWord(int id)
         {
-            var wordToDelete = (from c in _dataContext.BadWords where c.badwordid == id select c).FirstOrDefault();
+             var wordToDelete = (from c in _dataContext.BadWords where c.badwordid == id select c).FirstOrDefault();
             _dataContext.BadWords.Remove(wordToDelete);
             _dataContext.Entry(wordToDelete).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
 
@@ -593,6 +581,13 @@ namespace profile.Controllers
 
             HttpContext.Session.SetInt32("editProfile", id);
             var editProfile = (from b in _dataContext.Users where b.userid == id select b).FirstOrDefault();
+
+            if (editProfile == null)
+            {
+               // HandleErrorInfo error = new HandleErrorInfo(
+               //     new Exception("INFO: You do not have permission to edit these details"));
+                return View("Resume");
+            }
             return View(editProfile);
 
         }
@@ -634,7 +629,7 @@ namespace profile.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index");
+            return RedirectToAction("Resume");
         }
 
 

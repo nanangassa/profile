@@ -12,9 +12,13 @@
 @{
     Layout = "_Layout";
 }
+
+<br>
+<br>
 <div class="container">
     <h1>Add BlogPost</h1>
     <hr />
+
     <form asp-controller="Home" asp-action="AddBlogPost" method="post" />
     <div class="form-group">
         <input type="hidden" name="blogpostid" asp-for="blogpostid" class="form-control" required />
@@ -44,10 +48,10 @@
     <br /><br />
 
 </div>
-<h3>Add Image</h3>
-<form asp-controller="Home" asp-action="UploadImage" enctype="multipart/form-data">
-    <br />
-    <input type="file" name="files" />
-    <br />
-    <button class="btn btn-large btn-success" name="upload">Add Picture</button>
-</form>
+@*<h3>Add Image</h3>
+    <form asp-controller="Home" asp-action="UploadImage" enctype="multipart/form-data">
+        <br />
+        <input type="file" name="files" />
+        <br />
+        <button class="btn btn-large btn-success" name="upload">Add Picture</button>
+    </form>*@

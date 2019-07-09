@@ -105,8 +105,8 @@ namespace profile
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
+            //loggerFactory.AddConsole();
+            //loggerFactory.AddDebug();
 
             //SignalR
             //app.UseSignalR();
@@ -121,7 +121,7 @@ namespace profile
                 routes.MapRoute(
 
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Blog}/{id?}");
             });
         }
     }
