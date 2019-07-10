@@ -15,12 +15,15 @@ namespace profile
         public static void Main(string[] args)
         {
             //CreateWebHostBuilder(args).Build().Run();
+            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development");
 
-            
+
             var config = new ConfigurationBuilder()
-
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsetting.json", optional: true)
                 //.AddJsonFile("appsetting.json")
-                .AddCommandLine(args).Build();
+                .AddCommandLine(args)
+                .Build();
 
             var host = new WebHostBuilder()
                 .UseKestrel()
