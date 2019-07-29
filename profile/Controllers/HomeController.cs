@@ -7,12 +7,17 @@ using profile.Models;
 using profile.ViewModels;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web;
 
 namespace profile.Controllers
 {
 
-   //[Route("api/")]
-   // [Route("api/Views")]
+    //[Route("api/")]
+    // [Route("api/Views")]
 
 
     // [Route("Home/Controllers/HomeController")]
@@ -144,8 +149,8 @@ namespace profile.Controllers
 
 
 
-      
-       // [Route("Home/About")]
+
+        // [Route("Home/About")]
         public IActionResult About()
         {
             ViewData["Message"] = "Application description page.";
@@ -161,7 +166,7 @@ namespace profile.Controllers
         }
 
 
-      //  [Route("Home/Privacy")]
+        //  [Route("Home/Privacy")]
         public IActionResult Privacy()
         {
             return View();
@@ -198,86 +203,30 @@ namespace profile.Controllers
 
             if (Request.Query["RoleId"] == "2")
 
-                {
-                    user.roleid = "2";
+            {
+                user.roleid = "2";
             }
             else
             {
                 user.roleid = "1";
             }
 
-            // using (var connection = new SqlConnection(connString))
-            // {
-            //     connection.Execute("INSERT INTO users (roleid, firstname, lastname, emailaddress, password, dateodbirth) VALUES (@FirstName, @LastName, @emailaddress, @password, @dateodbirth)",
-            //         new { user.FirstName, user.LastName, user.EmailAddress, user.Password, user.DateOfBirth });
-            // }
-
-            // Connect to a PostgreSQL database
-          //  NpgsqlConnection conn = new NpgsqlConnection("Server=ec2-54-221-215-228.compute-1.amazonaws.com;User Id=zqfcnlmhuauqhp; " +
-          //      "Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c;Database=d6bejp4l9a71ps;sslmode=Require;TrustServerCertificate=True");
-
-         //   conn.Open();
-
-            // Define a query
-         //   NpgsqlCommand command = new NpgsqlCommand("SELECT (emailaddress, password) FROM users WHERE emailaddress=emailaddress AND password=password", conn);
-
-
-            //string sql = "INSERT INTO Customers (FirstName,LastName) VALUES ('Test','Tube')";
-
-            //using (var cmd = new NpgsqlCommand("INSERT INTO table (col1) VALUES (@p)", conn))
-            //{
-            //    cmd.Parameters.AddWithValue("p", "some_value");
-            //    cmd.ExecuteNonQuery();
-            //}
-
-            // Execute the query and obtain a result set
-           // NpgsqlDataReader dr = command.ExecuteReader();
-            //NpgsqlDataReader dr2 = command2.ExecuteReader();
-
-            // Output rows
-            //while (dr.Read())
-            //  Console.Write("{0}\t{1} \n", dr[0], dr[1]);
 
             var existing = (from users in _dataContext.Users where (users.emailaddress == user.password) select users).FirstOrDefault();
-          
 
-                if (existing == null) // ex
-                {
-                    _dataContext.Users.Add(user);
-                    _dataContext.SaveChanges();
-                }
 
-           // }
+            if (existing == null)
+            {
+                _dataContext.Users.Add(user);
+                _dataContext.SaveChanges();
+            }
+
             return RedirectToAction("Login");
-
-            //string existing = "SELECT emailaddress FROM users WHERE emailaddress = 'existing'";
-
-            //if (dr.HasRows)
-            //{
-            //    dr.Read();
-            //    // usr.EmailAddress = dr["EmailAddress"].ToString();
-            //    if (dr[0].ToString() == emailaddress && dr[1].ToString() == password)
-            //    {
-            //        RedirectToAction("Register");
-            //    }
-            //}
-            //else
-            //{
-
-            //NpgsqlCommand command2 = new NpgsqlCommand("INSERT INTO users (Roleid,FirstName,LastName,EmailAddress,Password,DateOfBirth,City,Address,PostalCode, Country) VALUES (@roleid,@firstname,@lastname,@emailaddress,@password,@DateOfBirth,@City,@Address,@PostalCode,@Country", conn);
-            // NpgsqlDataReader dr2 = command2.ExecuteReader(new { roleid, firstname, lastname, emailaddress, password, DateOfBirth, City, Address, PostalCode, Country });
-            // conn.Execute("insert into users (Roleid,FirstName,LastName,EmailAddress,Password,DateOfBirth,City,Address,PostalCode, Country) values (@roleid,@firstname,@lastname,@emailaddress,@password,@DateOfBirth,@City,@Address,@PostalCode,@Country)", new { roleid, firstname, lastname, emailaddress, password, DateOfBirth, City, Address, PostalCode, Country });
-
-            //var cmd = new NpgsqlCommand("INSERT INTO table (col1) VALUES (@p)", conn);
-
-            // NpgsqlDataReader dr2 = command2.ExecuteReader();
-            //  conn.Close();
-
         }
 
 
         [HttpGet]// GET: /<controller>/
-       // [Route("Home/Login")]
+                 // [Route("Home/Login")]
         public IActionResult LogIn()
         {
             return View();
@@ -288,16 +237,13 @@ namespace profile.Controllers
         //[Route("Home/Login")]
         public IActionResult LogIn(User user)
         {
-            //This the line that throws the exception.
-
             //   HttpContext.Session.SetInt32("UserId", user.UserId);
-
             //return View();
 
-             return RedirectToAction("Blog");
+            return RedirectToAction("Blog");
         }
 
-        //[HttpPost("AuthenticateUser/{id}")]//("Home/Index/{id}")]
+        //[HttpPost("AuthenticateUser/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AuthenticateUser()
@@ -324,7 +270,7 @@ namespace profile.Controllers
 
         public IActionResult EditBlogPost(int id)
         {
-           // HttpContext.Session.SetInt32("editBlogId", id);
+            // HttpContext.Session.SetInt32("editBlogId", id);
             var editPost = (from b in _dataContext.BlogPosts where b.blogpostid == id select b).FirstOrDefault();
             return View(editPost);
         }
@@ -362,7 +308,7 @@ namespace profile.Controllers
                 blogPost.posted = Convert.ToDateTime(DateTime.Now);
                 blogPost.userid = (int)(HttpContext.Session.GetInt32("UserId"));
                 blogPost.shortdescription = Request.Form["shortdescription"].ToString();
-               // blogPost.isavailable = Request.Form["isavailable"].ToString();
+                // blogPost.isavailable = Request.Form["isavailable"].ToString();
 
                 if (blogPost != null)
                 {
@@ -404,7 +350,6 @@ namespace profile.Controllers
             {
                 List<CommentViewModel> viewComments = new List<CommentViewModel>();
                 var commentList = (from c in _dataContext.Comments where c.blogpostid == id select c).ToList();
-                //  viewComments = commentList;
 
                 BlogPostViewModel blogPostView = new BlogPostViewModel
                 {
@@ -447,10 +392,9 @@ namespace profile.Controllers
                     }
                 }
 
-              //  IQueryable<Photo> IPhotos = (from c in _dataContext.Photos where c.blogpostid == id select c);
-
+                //  IQueryable<Photo> IPhotos = (from c in _dataContext.Photos where c.blogpostid == id select c);
                 // Photo[] photos = IPhotos.ToArray<Photo>();
-              //  blogPostView.Photos = IPhotos.ToList();
+                //  blogPostView.Photos = IPhotos.ToList();
 
                 blogPostView.User = (from user in _dataContext.Users where user.userid == post.userid select user).FirstOrDefault();
                 return View(blogPostView);
@@ -497,7 +441,7 @@ namespace profile.Controllers
 
         public IActionResult DeleteBadWord(int id)
         {
-             var wordToDelete = (from c in _dataContext.BadWords where c.badwordid == id select c).FirstOrDefault();
+            var wordToDelete = (from c in _dataContext.BadWords where c.badwordid == id select c).FirstOrDefault();
             _dataContext.BadWords.Remove(wordToDelete);
             _dataContext.Entry(wordToDelete).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
 
@@ -584,8 +528,8 @@ namespace profile.Controllers
 
             if (editProfile == null)
             {
-               // HandleErrorInfo error = new HandleErrorInfo(
-               //     new Exception("INFO: You do not have permission to edit these details"));
+                // HandleErrorInfo error = new HandleErrorInfo(
+                //     new Exception("INFO: You do not have permission to edit these details"));
                 return View("Resume");
             }
             return View(editProfile);
@@ -645,8 +589,101 @@ namespace profile.Controllers
             return builder.ToString();
         }
 
+        // GET: /<controller>/
+        // public async Task<IActionResult> CryptoIndex()
+        public ViewResult CryptoIndex()
+        {
 
-[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+            string API_KEY = "851c07eb-8f21-4d4d-85b1-584e6715f71e";
+            var URL = new UriBuilder("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest");
+
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+            queryString["start"] = "1";
+            queryString["limit"] = "5000";
+            queryString["convert"] = "USD";
+
+            URL.Query = queryString.ToString();
+
+            WebClient client = new WebClient();
+            client.Headers.Add("X-CMC_PRO_API_KEY", API_KEY);
+            client.Headers.Add("Accepts", "application/json");
+
+
+            string test = client.DownloadString(URL.ToString());
+            RootObject list = JsonConvert.DeserializeObject<RootObject>(test);
+
+            //  int i = 0;
+            //foreach (var item in list.data)
+            //{
+            //    //  i++;
+            //    Datum datum = new Datum
+            //    {
+            //        quote = new Quote
+            //        {
+            //            USD = new Usd()
+            //        },
+
+                    //    name = item.name,
+                    //    circulating_supply = item.circulating_supply,
+                    //    cmc_rank = item.cmc_rank,
+                    //    date_added = item.date_added,
+                    //    id = item.id,
+                    //    slug = item.slug,
+                    //    symbol = item.symbol,
+                    //    total_supply = item.total_supply,
+                    //    last_updated = item.last_updated,
+                    //    max_supply = item.max_supply,
+                    //    num_market_pairs = item.num_market_pairs
+                    //};
+
+                    //datum.quote.USD.price = item.quote.USD.price;
+                    //await _dataContext.Datum.AddAsync(item);
+                    //await _dataContext.SaveChangesAsync();
+
+                    // if (i > 10)
+                    //      break;
+                    //  Console.WriteLine("{0} {1} {2} {3} {4} {5}\n", item.id, item.name,
+                    //       item.symbol, item.slug, item.quote.USD.price, item.quote.USD.percent_change_1h);
+                //}
+
+
+
+            //ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            //ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+         
+
+            //aboutViewModel.Datum = _dataContext.Datum.Take(10).ToList();//
+            // aboutViewModel.Quote = _dataContext.quote.Take(10).ToList();//
+            //aboutViewModel.Usd = _dataContext.usd.Take(10).ToList();
+
+            //= new AboutViewModel
+            //{
+            //    Datum = _dataContext.Datum.ToList(),
+            //    Usd = _dataContext.usd.ToList()
+            //};
+
+
+            //switch (sortOrder)
+            //{
+            //    case "name_desc":
+            //        data = data.OrderByDescending(s => s.volume_24h);
+            //        break;
+            //    case "Date":
+            //        data = data.OrderBy(s => s.percent_change_1h);
+            //        break;
+            //    case "date_desc":
+            //        data = data.OrderByDescending(s => s.percent_change_1h);
+            //        break;
+            //    default:
+            //        data = data.OrderBy(s => s.volume_24h);
+            //        break;
+            //}
+
+            //return View(list.data.ToAsyncEnumerable());
+            return View(list);
+        }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
        // [Route("Home/Error")]
         public IActionResult Error()
         {

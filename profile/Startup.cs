@@ -71,7 +71,8 @@ namespace profile
                 AddRouting().
                 AddAuthentication();
 
-            services.AddEntityFrameworkSqlServer().AddEntityFrameworkNpgsql().AddMvc();
+            services.AddEntityFrameworkSqlServer()
+                .AddEntityFrameworkNpgsql().AddMvc();
             services.BuildServiceProvider();
 
 

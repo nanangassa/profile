@@ -75,7 +75,7 @@ using profile.Models;
             WriteLiteral("\r\n<h3> View Badwords </h3>\r\n<div class=\"container\">\r\n    ");
             EndContext();
             BeginContext(310, 324, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bf071f141a8c423499a354b7ca502590", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1b0466482b3e40849bb1a61a7cbc0664", async() => {
                 BeginContext(372, 255, true);
                 WriteLiteral("\r\n        <hr />\r\n        <br />\r\n        <fieldset>\r\n            <legend>Add a bad word, it will be hidden for comments</legend>\r\n            <input type=\"text\" name=\"badword\" />\r\n            <input type=\"submit\" value=\"Add\" />\r\n        </fieldset>\r\n    ");
                 EndContext();
@@ -140,7 +140,7 @@ using profile.Models;
             WriteLiteral("                    ");
             EndContext();
             BeginContext(1206, 136, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "476f84145fdc4295b100ee6ee7a9b3bf", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fa72797f99fc47cab082aad61a1cce13", async() => {
                 BeginContext(1332, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

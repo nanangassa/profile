@@ -1,0 +1,105 @@
+﻿@using System.Linq
+
+
+<hr />
+<br />
+
+@*@{
+        ViewData["Title"] = "Index";
+    }*@
+@*<p>
+        <a asp-page="About">Create New</a>
+    </p>*@
+
+
+@*<tr>
+    <th>
+        <a asp-page="./About" asp-route="About">
+            @Html.DisplayNameFor(model => model.Users[0].crypto)
+        </a>
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model)
+    </th>*@
+@*<th>
+        <a asp-page="./About" asp-route-sortOrder="@Model.DateSort">
+            @Html.DisplayNameFor(model => model.Student[0].EnrollmentDate)
+        </a>
+    </th>*@
+
+<h2>Data provided by coinmarketcap</h2>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table responsive="xl" class="table" style="width:100%">
+
+    <thead>
+        <tr>
+            <th>
+                name
+
+            </th>
+            <th>
+                price
+            </th>
+
+            <th>
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["NameSortParm"]">@*@Html.DisplayNameFor(model => @model.data.quote.Usd.percent_change_24h)*@24h</a>
+            </th>
+            <th>
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["DateSortParm"]"> @*@Html.DisplayNameFor(model => model.Usd.percent_change_1h)*@1h</a>
+            </th>
+            <th>
+                24h
+            </th>
+            <th>
+                7d
+            </th>
+            <th>
+                marketcap
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.data)
+        {
+            <tr>
+
+                <td>
+                    @item.name
+                </td>
+
+                <td>
+                    @item.quote.USD.price
+                </td>
+                <td>
+                    @item.quote.USD.volume_24h
+                </td>
+                <td>
+                    @item.quote.USD.percent_change_1h
+                </td>
+                <td>
+                    @item.quote.USD.percent_change_24h
+                </td>
+                <td>
+                    @item.quote.USD.percent_change_7d
+                </td>
+                <td>
+                    @item.quote.USD.market_cap
+                </td>
+            </tr>
+        }
+
+</table>
+
+
+@*<td>
+        <a asp-page="./Edit" asp-route-id="@item.UserId.">Edit</a> |
+        <a asp-page="./Details" asp-route-id="@item.UserId">Details</a> |
+        <a asp-page="./Delete" asp-route-id="@item.UserId">Delete</a>
+    </td>*@
+
+
