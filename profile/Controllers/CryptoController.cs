@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -20,7 +21,7 @@ namespace profile.Controllers
         private Storecontext _dataContext;//= new DatabaseContext();
 
         // GET: /<controller>/
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
 
             var URL = new UriBuilder("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest");
@@ -76,40 +77,30 @@ namespace profile.Controllers
 
 
 
-            //ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            //ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-            var data = from s in _dataContext.usd.Include("Datum").Take(10)
-                       select s;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
 
-            //aboutViewModel.Datum = _dataContext.Datum.Take(10).ToList();//
-            // aboutViewModel.Quote = _dataContext.quote.Take(10).ToList();//
-            //aboutViewModel.Usd = _dataContext.usd.Take(10).ToList();
-
-            //= new AboutViewModel
-            //{
-            //    Datum = _dataContext.Datum.ToList(),
-            //    Usd = _dataContext.usd.ToList()
-            //};
+            var data = list.data.ToAsyncEnumerable();
 
 
-            //switch (sortOrder)
-            //{
-            //    case "name_desc":
-            //        data = data.OrderByDescending(s => s.volume_24h);
-            //        break;
-            //    case "Date":
-            //        data = data.OrderBy(s => s.percent_change_1h);
-            //        break;
-            //    case "date_desc":
-            //        data = data.OrderByDescending(s => s.percent_change_1h);
-            //        break;
-            //    default:
-            //        data = data.OrderBy(s => s.volume_24h);
-            //        break;
-            //}
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    data = data.OrderByDescending(s => s.name);//s.quote.USD.volume_24h);
+                    break;
+                case "Date":
+                    data = data.OrderBy(s => s.quote.USD.percent_change_1h);
+                    break;
+                case "date_desc":
+                    data = data.OrderByDescending(s => s.quote.USD.percent_change_1h);
+                    break;
+                default:
+                    data = data.OrderBy(s => s.quote.USD.volume_24h);
+                    break;
+            }
 
-            //return View(list.data.ToAsyncEnumerable());
-            return View(list);
+            return View(data);
+            //return View(list);
         }
     }
 }

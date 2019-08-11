@@ -8,12 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace profile.Models
 {
-    public class HomeController1 : Controller
+    public class IUnitOfWork //: Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
-        {
-            return View();
-        }
+        IGenericRepository<User> UserRepository { get; }
+
+        //private void Save();
     }
+
 }

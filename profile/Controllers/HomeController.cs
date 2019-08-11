@@ -5,15 +5,20 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using profile.Models;
 using profile.ViewModels;
+using profile.UnitOfWork;
+
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using System.Web;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
+using System.Net.Http;
 
-namespace profile.Controllers
+
+
+namespace profile.Models
 {
 
     //[Route("api/")]
@@ -24,82 +29,23 @@ namespace profile.Controllers
 
     public class HomeController : Controller
     {
+        private IUserRepository rep;
+        private IBlogRepository blog;
 
-        private readonly Storecontext _dataContext;
 
-        public HomeController(Storecontext context)
+        private readonly UnitOfWork _unitOfWork = new UnitOfWork();
+
+        public HomeController(IUserRepository userRepository, IBlogRepository blogRep)
         {
-            _dataContext = context;
+            rep = userRepository;
+            blog = blogRep;
         }
 
-        //// GET api/values
         //[HttpGet]
-        //public IEnumerable<string> Get()
+        //public IEnumerable<User> Get()
         //{
-        //    return new string[] { "value1", "value2" };
+        //    return _dataContext.Users;
         //}
-
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public ActionResult<User> GetByid(int id)
-        //{
-        //    var item = _dataContext.Users.Find(id);
-        //    if (item == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return item;
-        //}
-
-
-        //[HttpGet("{id}")]
-        //public User Get(int id)
-        //{
-        //    return _dataContext.Users.FirstOrDefault(x => x.userid == id);
-        //}
-
-        //[HttpPost]
-        //public void Post([FromBody]User user)
-        //{
-        //    _dataContext.Add(user);
-        //    _dataContext.SaveChanges();
-        //}
-
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]User user)
-        //{
-        //    var selectedUser = _dataContext.Users.FirstOrDefault(x => x.userid == id);
-        //    if (selectedUser != null)
-        //    {
-        //        _dataContext.Entry(selectedUser).Context.Update(user);
-        //        _dataContext.SaveChanges();
-        //    }
-        //}
-
-
-        //// POST api/values
-        //[HttpPost("{id}")]
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        // DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
-
-        [HttpGet]
-        public IEnumerable<User> Get()
-        {
-            return _dataContext.Users;
-        }
 
         //[Route("")]
         // [Route("Home")]
@@ -125,7 +71,8 @@ namespace profile.Controllers
         public IActionResult Blog(BlogPostViewModel IndexModel)
         {
 
-            IndexModel.BlogPosts = _dataContext.BlogPosts.ToList();
+            IndexModel.BlogPosts = _unitOfWork.blogRepository.GetAll().ToList();
+           // IEnumerable<Datum> data = (from c in list.data select c).ToList();
 
             try
             {
@@ -135,7 +82,7 @@ namespace profile.Controllers
                     //    IndexModel.User = _dataContext.Users.Where(s => s.UserId == userId).FirstOrDefault;
                     //where s.UserId.Equals(userId)
                     //select s;
-                    IndexModel.User = (from m in _dataContext.Users where m.userid == userId select m).FirstOrDefault();
+                    IndexModel.User = (from m in _unitOfWork.UserRepository.GetAll() where m.userid == userId select m).FirstOrDefault();
                     //IndexModel.User = _dataContext.Users.FirstOrDefault(o => o.userid == userId);
                 }
             }
@@ -212,13 +159,14 @@ namespace profile.Controllers
             }
 
 
-            var existing = (from users in _dataContext.Users where (users.emailaddress == user.password) select users).FirstOrDefault();
+            //var existing = (from users in _unitOfWork.UserRepository.GetAll() where (users.emailaddress == user.password) select users).FirstOrDefault();
+            var existing = (from users in rep.GetUsers() where (users.emailaddress == user.password) select users).FirstOrDefault();
 
 
             if (existing == null)
             {
-                _dataContext.Users.Add(user);
-                _dataContext.SaveChanges();
+                _unitOfWork.UserRepository.Add(user);
+                _unitOfWork.Save();
             }
 
             return RedirectToAction("Login");
@@ -252,7 +200,8 @@ namespace profile.Controllers
             string email = Request.Form["EmailAddress"];
             string pass = Request.Form["Password"];
 
-            var user = (from u in _dataContext.Users where (u.emailaddress == email && u.password == pass) select u).FirstOrDefault();
+            var user = (from u in rep.GetUsers() where (u.emailaddress == email && u.password == pass) select u).FirstOrDefault();
+            //var user = (from u in _unitOfWork.UserRepository.GetAll() where (u.emailaddress == email && u.password == pass) select u).FirstOrDefault();
             if (user != null)
             {
                 HttpContext.Session.SetInt32("UserId", user.userid);
@@ -271,7 +220,7 @@ namespace profile.Controllers
         public IActionResult EditBlogPost(int id)
         {
             // HttpContext.Session.SetInt32("editBlogId", id);
-            var editPost = (from b in _dataContext.BlogPosts where b.blogpostid == id select b).FirstOrDefault();
+            var editPost = (from b in _unitOfWork.blogRepository.GetAll() where b.blogpostid == id select b).FirstOrDefault();
             return View(editPost);
         }
 
@@ -280,14 +229,14 @@ namespace profile.Controllers
         {
 
             int id = Convert.ToInt32(Request.Form["blogpostid"]);
-            var postUpdate = (from m in _dataContext.BlogPosts where m.blogpostid == id select m).FirstOrDefault();
+            var postUpdate = (from m in _unitOfWork.blogRepository.GetAll() where m.blogpostid == id select m).FirstOrDefault();
             postUpdate.title = posts.title;
             postUpdate.content = posts.content;
             postUpdate.posted = posts.posted;
             postUpdate.shortdescription = posts.shortdescription;
 
             //save changes to edits
-            _dataContext.SaveChanges();
+            _unitOfWork.Save();
             return RedirectToAction("Blog");
         }
 
@@ -312,8 +261,8 @@ namespace profile.Controllers
 
                 if (blogPost != null)
                 {
-                    _dataContext.BlogPosts.Add(blogPost);
-                    _dataContext.SaveChanges();
+                    _unitOfWork.blogRepository._context.Add(blogPost);
+                    _unitOfWork.Save();
                 }
             }
             return RedirectToAction("Blog");
@@ -334,8 +283,8 @@ namespace profile.Controllers
             if (comments != null)
             {
                 //add the comments to the page
-                _dataContext.Comments.Add(comments);
-                _dataContext.SaveChanges();
+                _unitOfWork.blogRepository._context.Comments.Add(comments);
+                _unitOfWork.Save();
             }
             return RedirectToAction("Blog");
         }
@@ -344,12 +293,12 @@ namespace profile.Controllers
         [HttpGet]
         public IActionResult DisplayFullPost(int id)
         {
-            var post = (from p in _dataContext.BlogPosts where p.blogpostid == id select p).FirstOrDefault();
 
+            var post = (from p in _unitOfWork.blogRepository.GetAll() where p.blogpostid == id select p).FirstOrDefault();
             if (post != null)
             {
                 List<CommentViewModel> viewComments = new List<CommentViewModel>();
-                var commentList = (from c in _dataContext.Comments where c.blogpostid == id select c).ToList();
+                var commentList = (from c in _unitOfWork.blogRepository._context.Comments where c.blogpostid == id select c).ToList();
 
                 BlogPostViewModel blogPostView = new BlogPostViewModel
                 {
@@ -359,7 +308,7 @@ namespace profile.Controllers
 
                 foreach (Comment comment in commentList)
                 {
-                    var user = (from u in _dataContext.Users where u.userid == comment.userid select u).FirstOrDefault();
+                    var user = (from u in _unitOfWork.UserRepository.GetAll() where u.userid == comment.userid select u).FirstOrDefault();
                     string commentAuthor = user.firstname + " " + user.lastname;
 
                     CommentViewModel temp = new CommentViewModel
@@ -371,7 +320,7 @@ namespace profile.Controllers
                     string getcomment = temp.Comment.content.ToLower();
                     string[] words = getcomment.Split(' ');
 
-                    var badwords = (from w in _dataContext.BadWords select w).ToList();
+                    var badwords = (from w in _unitOfWork.blogRepository._context.BadWords select w).ToList();
 
                     for (int i = 0; i < words.Count(); i++)
                     {
@@ -396,7 +345,7 @@ namespace profile.Controllers
                 // Photo[] photos = IPhotos.ToArray<Photo>();
                 //  blogPostView.Photos = IPhotos.ToList();
 
-                blogPostView.User = (from user in _dataContext.Users where user.userid == post.userid select user).FirstOrDefault();
+                blogPostView.User = (from user in _unitOfWork.blogRepository._context.Users where user.userid == post.userid select user).FirstOrDefault();
                 return View(blogPostView);
             }
             else
@@ -409,16 +358,16 @@ namespace profile.Controllers
         public IActionResult DeleteBlogPost(int id)
 
         {
-            _dataContext.Comments.RemoveRange(from c in _dataContext.Comments where c.blogpostid == id select c);
-            _dataContext.SaveChanges();
+            _unitOfWork.blogRepository._context.Comments.RemoveRange(from c in _unitOfWork.blogRepository._context.Comments where c.blogpostid == id select c);
+            _unitOfWork.blogRepository._context.SaveChanges();
 
-            var deleteBlogs = (from u in _dataContext.BlogPosts where u.blogpostid == id select u).FirstOrDefault();
+            var deleteBlogs = (from u in _unitOfWork.blogRepository._context.BlogPosts where u.blogpostid == id select u).FirstOrDefault();
 
-            _dataContext.BlogPosts.Remove(deleteBlogs);
-            _dataContext.Entry(deleteBlogs).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _unitOfWork.blogRepository._context.BlogPosts.Remove(deleteBlogs);
+            _unitOfWork.blogRepository._context.Entry(deleteBlogs).State = EntityState.Deleted;
 
             //_dataContext.Photos.RemoveRange(from c in _dataContext.Photos where c.photoid == id select c);
-            _dataContext.SaveChanges();
+            _unitOfWork.Save();
 
             return RedirectToAction("Blog");
         }
@@ -433,19 +382,21 @@ namespace profile.Controllers
             if (badWordToAdd != null)
             {
 
-                _dataContext.BadWords.Add(badWordToAdd);
-                _dataContext.SaveChanges();
+                _unitOfWork.blogRepository._context.BadWords.Add(badWordToAdd);
+                _unitOfWork.Save();
             }
             return RedirectToAction("ViewBadWords");
         }
 
         public IActionResult DeleteBadWord(int id)
         {
-            var wordToDelete = (from c in _dataContext.BadWords where c.badwordid == id select c).FirstOrDefault();
-            _dataContext.BadWords.Remove(wordToDelete);
-            _dataContext.Entry(wordToDelete).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            var wordToDelete = (from c in _unitOfWork.blogRepository._context.BadWords where c.badwordid == id select c).FirstOrDefault();
+            _unitOfWork.blogRepository._context.BadWords.Remove(wordToDelete);
+            _unitOfWork.blogRepository._context.Entry(wordToDelete).State = EntityState.Deleted;
 
-            _dataContext.SaveChanges();
+            //_unitOfWork.blogRepository._context.SaveChanges();
+            _unitOfWork.Save();
+
             return RedirectToAction("ViewBadWords");
         }
 
@@ -524,7 +475,7 @@ namespace profile.Controllers
         {
 
             HttpContext.Session.SetInt32("editProfile", id);
-            var editProfile = (from b in _dataContext.Users where b.userid == id select b).FirstOrDefault();
+            var editProfile = (from b in _unitOfWork.UserRepository.GetAll() where b.userid == id select b).FirstOrDefault();
 
             if (editProfile == null)
             {
@@ -543,7 +494,7 @@ namespace profile.Controllers
             int id = Convert.ToInt32(Request.Form["userid"]);
             // var postUpdate = (from m in _dataContext.BlogPosts where m.BlogPostId == id select m).FirstOrDefault();
             User userToUpdate = new User();
-            userToUpdate = (from u in _dataContext.Users where u.userid == id select u).FirstOrDefault();
+            userToUpdate = (from u in _unitOfWork.UserRepository.GetAll() where u.userid == id select u).FirstOrDefault();
 
             userToUpdate.firstname = user.firstname;
             userToUpdate.lastname = user.lastname;
@@ -557,14 +508,14 @@ namespace profile.Controllers
             userToUpdate.roleid = user.roleid;
 
 
-            _dataContext.SaveChanges();
+            _unitOfWork.Save();
             return RedirectToAction("Index");
         }
 
         public IActionResult ViewBadWords()
         {
             var view = HttpContext.Session.GetString("UserId");
-            var badWords = (from badword in _dataContext.BadWords select badword);
+            var badWords = (from badword in _unitOfWork.blogRepository._context.BadWords select badword);
 
             return View(badWords);
         }
@@ -591,7 +542,8 @@ namespace profile.Controllers
 
         // GET: /<controller>/
         // public async Task<IActionResult> CryptoIndex()
-        public ViewResult CryptoIndex()
+       // ViewResult?
+        public ViewResult CryptoIndex(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
 
             string API_KEY = "851c07eb-8f21-4d4d-85b1-584e6715f71e";
@@ -623,64 +575,133 @@ namespace profile.Controllers
             //            USD = new Usd()
             //        },
 
-                    //    name = item.name,
-                    //    circulating_supply = item.circulating_supply,
-                    //    cmc_rank = item.cmc_rank,
-                    //    date_added = item.date_added,
-                    //    id = item.id,
-                    //    slug = item.slug,
-                    //    symbol = item.symbol,
-                    //    total_supply = item.total_supply,
-                    //    last_updated = item.last_updated,
-                    //    max_supply = item.max_supply,
-                    //    num_market_pairs = item.num_market_pairs
-                    //};
-
-                    //datum.quote.USD.price = item.quote.USD.price;
-                    //await _dataContext.Datum.AddAsync(item);
-                    //await _dataContext.SaveChangesAsync();
-
-                    // if (i > 10)
-                    //      break;
-                    //  Console.WriteLine("{0} {1} {2} {3} {4} {5}\n", item.id, item.name,
-                    //       item.symbol, item.slug, item.quote.USD.price, item.quote.USD.percent_change_1h);
-                //}
-
-
-
-            //ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            //ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-         
-
-            //aboutViewModel.Datum = _dataContext.Datum.Take(10).ToList();//
-            // aboutViewModel.Quote = _dataContext.quote.Take(10).ToList();//
-            //aboutViewModel.Usd = _dataContext.usd.Take(10).ToList();
-
-            //= new AboutViewModel
-            //{
-            //    Datum = _dataContext.Datum.ToList(),
-            //    Usd = _dataContext.usd.ToList()
+            //    name = item.name,
+            //    circulating_supply = item.circulating_supply,
+            //    cmc_rank = item.cmc_rank,
+            //    date_added = item.date_added,
+            //    id = item.id,
+            //    slug = item.slug,
+            //    symbol = item.symbol,
+            //    total_supply = item.total_supply,
+            //    last_updated = item.last_updated,
+            //    max_supply = item.max_supply,
+            //    num_market_pairs = item.num_market_pairs
             //};
 
+            //datum.quote.USD.price = item.quote.USD.price;
+            //await _dataContext.Datum.AddAsync(item);
+            //await _dataContext.SaveChangesAsync();
 
-            //switch (sortOrder)
-            //{
-            //    case "name_desc":
-            //        data = data.OrderByDescending(s => s.volume_24h);
-            //        break;
-            //    case "Date":
-            //        data = data.OrderBy(s => s.percent_change_1h);
-            //        break;
-            //    case "date_desc":
-            //        data = data.OrderByDescending(s => s.percent_change_1h);
-            //        break;
-            //    default:
-            //        data = data.OrderBy(s => s.volume_24h);
-            //        break;
+            // if (i > 10)
+            //      break;
+            //  Console.WriteLine("{0} {1} {2} {3} {4} {5}\n", item.id, item.name,
+            //       item.symbol, item.slug, item.quote.USD.price, item.quote.USD.percent_change_1h);
             //}
 
-            //return View(list.data.ToAsyncEnumerable());
-            return View(list);
+            //ViewData["RankSortParm"] = String.IsNullOrEmpty(sortOrder) ? "rank_desc" : "rank";
+            ViewData["RankSortParm"] = sortOrder == "rank" ? "rank_desc" : "rank";
+            ViewData["NameSortParm"] = sortOrder == "name" ? "name_desc" : "name";
+            ViewData["PriceSortParm"] = sortOrder == "price" ? "price_desc" : "price";
+            ViewData["24hvolume"] = sortOrder == "24hvolume" ? "24hvolume_desc" : "24hvolume";
+            ViewData["1hSortParm"] = sortOrder == "1h" ? "1h_desc" : "1h";
+            ViewData["7d%Parm"] = sortOrder == "%7d" ? "%7d_desc" : "%7d";
+            ViewData["24h%Parm"] = sortOrder == "%24h" ? "%24h_desc" : "%24h";
+            ViewData["MarketCapSortParm"] = sortOrder == "market" ? "market_desc" : "market";
+            ViewBag.CurrentSort = sortOrder;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            IEnumerable<Datum> data = (from c in list.data select c).ToList() ;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                data = data.Where(s => s.name.ToLower().Contains(searchString.ToLower()));
+
+                                       //|| s.FirstMidName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+
+                case "price_desc":
+                    data = data.OrderByDescending(s => s.quote.USD.price);//s.quote.USD.volume_24h);
+                    break;
+
+                case "price":
+                    data = data.OrderBy(s => s.quote.USD.price);
+                    break;
+
+                case "name_desc":
+                    data = data.OrderByDescending(s => s.name);//s.quote.USD.volume_24h);
+                    break;
+
+                case "name":
+                    data = data.OrderBy(s => s.name);
+                    break;
+
+                case "24hvolume_desc":
+                    data = data.OrderByDescending(s => s.quote.USD.volume_24h);//s.quote.USD.volume_24h);
+                    break;
+
+                case "24hvolume":
+                    data = data.OrderBy(s => s.quote.USD.volume_24h);//s.quote.USD.volume_24h);
+                    break;
+
+                case "1h":
+                    data = data.OrderBy(s => s.quote.USD.percent_change_1h);
+                    break;
+
+                case "1h_desc":
+                    data = data.OrderByDescending(s => s.quote.USD.percent_change_1h);
+                    break;
+
+     
+                case "market_desc":
+                    data = data.OrderByDescending(s => s.quote.USD.market_cap);//s.quote.USD.volume_24h);
+                    break;
+
+                case "market":
+                    data = data.OrderBy(s => s.quote.USD.market_cap);
+                    break;
+
+                case "%7d":
+                    data = data.OrderByDescending(s => s.quote.USD.percent_change_7d);//s.quote.USD.volume_24h);
+                    break;
+
+                case "%7d_desc":
+                    data = data.OrderBy(s => s.quote.USD.percent_change_7d);
+                    break;
+
+                case "%24h":
+                    data = data.OrderByDescending(s => s.quote.USD.percent_change_24h);//s.quote.USD.volume_24h);
+                    break;
+
+                case "%24h_desc":
+                    data = data.OrderBy(s => s.quote.USD.percent_change_24h);
+                    break;
+
+                case "rank_desc":
+                    data = data.OrderByDescending(s => s.cmc_rank);
+                    break;
+
+
+                default:
+                     data = data.OrderBy(s => s.cmc_rank);
+                    break;
+            }
+
+           // int pageSize = 3;
+            //return View(PaginatedList<Datum>.CreateAsync(data.AsQueryable().AsNoTracking(), pageNumber ?? 1, pageSize));
+              return View(data);
+            // return View(list);
         }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

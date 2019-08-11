@@ -41,7 +41,7 @@ namespace profile.Controllers
 		[HttpPut("{id}")]
 		public void Put(int id, [FromBody]User user)
 		{
-			var selectedUser = _webAPIDataContext.Users.FirstOrDefault(x => x.userid == id);
+			var selectedUser = _webAPIDataContext.BlogPosts.FirstOrDefault(x => x.userid == id);
 			if (selectedUser != null)
 			{
 				_webAPIDataContext.Entry(selectedUser).Context.Update(user);
@@ -52,10 +52,10 @@ namespace profile.Controllers
 		[HttpDelete("{id}")]
 		public void Delete(int id)
 		{
-			var user = _webAPIDataContext.Users.FirstOrDefault(x => x.userid == id);
+			var user = _webAPIDataContext.BlogPosts.FirstOrDefault(x => x.userid == id);
 			if (user != null)
 			{
-				_webAPIDataContext.Users.Remove(user);
+				_webAPIDataContext.BlogPosts.Remove(user);
 				_webAPIDataContext.SaveChanges();
 			}
 		}

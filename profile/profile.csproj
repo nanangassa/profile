@@ -22,10 +22,12 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.0.2" />
     <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="PagedList.Core.Mvc" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
+    <Folder Include="UnitOfWork\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Models\BlogPhoto.cshtml" />

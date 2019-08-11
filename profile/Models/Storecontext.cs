@@ -25,6 +25,10 @@ namespace profile.Models
 
         }
 
+        public Storecontext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

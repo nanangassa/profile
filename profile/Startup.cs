@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using profile.Models;
+using profile.UnitOfWork;
+
 using Npgsql;
 using Microsoft.AspNetCore.Identity;
 using System.IO;
@@ -51,6 +53,10 @@ namespace profile
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
+
+
 
             // connection = @"postgres://zqfcnlmhuauqhp:c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c@ec2-54-221-215-228.compute-1.amazonaws.com:5432/d6bejp4l9a71ps;Database=d6bejp4l9a71ps; User Id=zqfcnlmhuauqhp; Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c; Connection Timeout=30; MultipleActiveResultSets=true";
             //var connection = @"Server=ec2-54-221-215-228.compute-1.amazonaws.com;Database=d6bejp4l9a71ps; User Id=zqfcnlmhuauqhp; Password=c005edf20ff818f232b700c356d150cb5200f05667724608ca661345ca319b7c; Connection Timeout=30; MultipleActiveResultSets=true ";//Pooling=true;Max Pool Size=100";
@@ -60,7 +66,7 @@ namespace profile
             //  var conn = new NpgsqlConnection(connString);
 
             // services.AddDbContext<Storecontext>(options => options.UseSqlServer("DefaultConnection"));
-               services.AddDbContext<Storecontext>(options =>
+            services.AddDbContext<Storecontext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddRouting().

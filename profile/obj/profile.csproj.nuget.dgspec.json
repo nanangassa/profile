@@ -91,6 +91,10 @@
               "target": "Package",
               "version": "[1.0.2, )"
             },
+            "PagedList.Core.Mvc": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
             "jQuery": {
               "target": "Package",
               "version": "[3.4.1, )"

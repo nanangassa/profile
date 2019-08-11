@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 
 namespace profile.Models
 {
 
-    [Table("users")]
+    public class RootObject
+    {
+        public Status status { get; set; }
+        public List<Datum> data { get; set; }
+    }
+
+    [Table("crypto")]
     public class Crypto
     {
         [Required]
@@ -62,11 +65,6 @@ namespace profile.Models
         public virtual Quote quote { get; set; }
     }
 
-    public class RootObject
-    {
-        public Status status { get; set; }
-        public List<Datum> data { get; set; }
-    }
 
     [Table("usd")]
     public class Usd

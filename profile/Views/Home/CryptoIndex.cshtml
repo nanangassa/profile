@@ -1,4 +1,6 @@
 ﻿@using System.Linq
+@*@model PaginatedList<profile.Models.Datum>*@
+
 
 
 <hr />
@@ -29,6 +31,14 @@
 
 <h2>Data provided by coinmarketcap</h2>
 
+
+<form asp-controller="Home" asp-action="CryptoIndex">
+    <p>
+        Search: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 @*<p>
         <a asp-action="Create">Create New</a>
     </p>*@
@@ -36,61 +46,76 @@
 
     <thead>
         <tr>
-            <th>
-                name
 
-            </th>
+
             <th>
-                price
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["RankSortParm"]">rank</a>
             </th>
 
             <th>
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["NameSortParm"]">@*@Html.DisplayNameFor(model => @model.data.quote.Usd.percent_change_24h)*@24h</a>
+
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["NameSortParm"]">name</a>
+
+            </th>
+
+            <th>
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["PriceSortParm"]">price</a>
+            </th>
+
+            <th>
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["24hvolume"]">24h Volume</a>
             </th>
             <th>
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["DateSortParm"]"> @*@Html.DisplayNameFor(model => model.Usd.percent_change_1h)*@1h</a>
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["1hSortParm"]"> %1h</a>
             </th>
             <th>
-                24h
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["24h%Parm"]"> %24h</a>
             </th>
             <th>
-                7d
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["7d%Parm"]"> %7d</a>
+
             </th>
             <th>
-                marketcap
+                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["MarketCapSortParm"]"> marketcap</a>
+
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 
-        @foreach (var item in Model.data)
+        @foreach (var item in Model)
         {
-            <tr>
+        <tr>
 
-                <td>
-                    @item.name
-                </td>
+            <td>
+                @item.cmc_rank
+            </td>
 
-                <td>
-                    @item.quote.USD.price
-                </td>
-                <td>
-                    @item.quote.USD.volume_24h
-                </td>
-                <td>
-                    @item.quote.USD.percent_change_1h
-                </td>
-                <td>
-                    @item.quote.USD.percent_change_24h
-                </td>
-                <td>
-                    @item.quote.USD.percent_change_7d
-                </td>
-                <td>
-                    @item.quote.USD.market_cap
-                </td>
-            </tr>
+
+            <td>
+                @item.name
+            </td>
+
+            <td>
+                @item.quote.USD.price
+            </td>
+            <td>
+                @item.quote.USD.volume_24h
+            </td>
+            <td>
+                @item.quote.USD.percent_change_1h
+            </td>
+            <td>
+                @item.quote.USD.percent_change_24h
+            </td>
+            <td>
+                @item.quote.USD.percent_change_7d
+            </td>
+            <td>
+                @item.quote.USD.market_cap
+            </td>
+        </tr>
         }
 
 </table>
