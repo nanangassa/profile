@@ -8,7 +8,7 @@ namespace profile.ViewModels
 {
     public class BlogPostViewModel 
     {
-        public List<Models.BlogPost> BlogPosts { get; set; }
+        public IEnumerable<Models.BlogPost> BlogPosts { get; set; }
         public Models.User User { get; set; }
         public Models.BlogPost BlogPost { get; set; }
         public List<CommentViewModel> Comments { get; set; }

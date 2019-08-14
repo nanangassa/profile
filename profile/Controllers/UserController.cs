@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using profile.Models;
+
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 
@@ -11,39 +12,52 @@ using Microsoft.AspNetCore.Http;
 
 namespace myprofile.Controllers
 {
-	[Route("api/[UserController]")]
-	public class UserController : Controller
+    [Route("api/Users")]
+    public class UserController : Controller
 	{
 		private readonly UnitOfWork _unitOfWork = new UnitOfWork();
 
         [HttpGet]
+        [Route("")]
         [Route("api/Users/Index")]
-        public IEnumerable<User> Index()
+        [ValidateAntiForgeryToken]
+        //public async Task<IEnumerable<User>> GetUsers()
+        public async Task<IEnumerable<User>> GetAll()
+        // public IEnumerable<User> GetUsers()
+        //public async IEnumerable<User> Index()
         {
-            return _unitOfWork.UserRepository.GetAll();
+            return await _unitOfWork.UserRepository.GetAll();
         }
 
         [HttpGet("{id}")]
-		public User Get(int id)
+        [Route("{id:int}")]
+        [ValidateAntiForgeryToken]
+        public User Get(int id)
 		{
             return _unitOfWork.UserRepository.GetByID(id);//.FirstOrDefault(x => x.userid == id);
 		}
 
 		[HttpPost]
-		public User Post([FromBody]User user)
+        [Route("api/Users/Create")]
+        [ValidateAntiForgeryToken]
+        public User Post([FromBody]User user)
 		{
             return _unitOfWork.UserRepository.Add(user);
 
         }
 
-        [HttpPut("{id}")]
+        //[HttpPut("{id}")]
+        [Route("{id:int}")]
+        [ValidateAntiForgeryToken]
         public void Put([FromBody]User user)
         {
            _unitOfWork.UserRepository.Update(user);
         }
 
         [HttpDelete("{id}")]
-		public void Delete(int id)
+        [Route("api/Users/Delete")]
+        [ValidateAntiForgeryToken]
+        public void Delete(int id)
 		{
            _unitOfWork.UserRepository.Delete(id);
 

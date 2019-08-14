@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using profile.Models;
 
 namespace profile.Models
 {
@@ -16,24 +15,30 @@ namespace profile.Models
             this.context = context;
         }
 
-        public IEnumerable<User> GetUsers()
+        public async Task <IEnumerable<User>> GetUsers()
         {
-            return context.Users.ToList();
+            return await context.Users.ToListAsync();
+        }
+
+        public async Task <IEnumerable<User>> GetByID()
+        {
+            return await context.Users.ToListAsync();
         }
 
         public User GetUserByID(int id)
         {
+            //return context.Users.FirstOrDefault(x => x.userid == id);
             return context.Users.Find(id);
         }
 
-        public void Add(User student)
+        public async Task Add(User student)
         {
-            context.Users.Add(student);
+            await context.Users.AddAsync(student);
         }
 
-        public void Delete(int studentID)
+        public async Task Delete(int studentID)
         {
-            User student = context.Users.Find(studentID);
+            User student = await context.Users.FindAsync(studentID);
             context.Users.Remove(student);
         }
 
@@ -42,9 +47,9 @@ namespace profile.Models
             context.Entry(student).State = EntityState.Modified;
         }
 
-        public void Save()
+        public async Task Save()
         {
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
         private bool disposed = false;

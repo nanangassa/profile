@@ -1,5 +1,4 @@
 ﻿using System;
-using profile.Models;
 using profile.UnitOfWork;
 
 namespace profile.Models
@@ -7,8 +6,8 @@ namespace profile.Models
     public class UnitOfWork : IDisposable
     {
         private Storecontext _context = new Storecontext();
-        private GenericRepository<User> _userRepository;
-        private GenericRepository<BlogPost> _blogRepository;
+        private profile.UnitOfWork.GenericRepository<User> _userRepository;
+        private profile.UnitOfWork.GenericRepository<BlogPost> _blogRepository;
 
 
         public UnitOfWork()
@@ -22,7 +21,7 @@ namespace profile.Models
             {
                 if (this._userRepository == null)
                 {
-                    this._userRepository = new GenericRepository<User>(_context);
+                    this._userRepository = new GenericRepository <User>(_context);
                 }
                 return _userRepository;
             }
@@ -36,7 +35,7 @@ namespace profile.Models
 
                 if (this._blogRepository == null)
                 {
-                    this._blogRepository = new GenericRepository<BlogPost>(_context);
+                    this._blogRepository = new GenericRepository <BlogPost>(_context);
                 }
                 return _blogRepository;
             }

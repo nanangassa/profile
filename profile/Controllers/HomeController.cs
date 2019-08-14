@@ -5,8 +5,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using profile.Models;
 using profile.ViewModels;
-using profile.UnitOfWork;
-
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using System.Web;
@@ -15,8 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Threading.Tasks;
 using System.Net.Http;
-
-
+using System.Net.Http.Headers;
 
 namespace profile.Models
 {
@@ -31,6 +28,7 @@ namespace profile.Models
     {
         private IUserRepository rep;
         private IBlogRepository blog;
+        //private readonly HttpClient client = new HttpClient();
 
 
         private readonly UnitOfWork _unitOfWork = new UnitOfWork();
@@ -68,10 +66,12 @@ namespace profile.Models
             return View();
         }
 
-        public IActionResult Blog(BlogPostViewModel IndexModel)
+        //public IActionResult Blog(BlogPostViewModel IndexModel)
+        public async Task <IActionResult> Blog(BlogPostViewModel IndexModel)
+
         {
 
-            IndexModel.BlogPosts = _unitOfWork.blogRepository.GetAll().ToList();
+            IndexModel.BlogPosts = await _unitOfWork.blogRepository.GetAll();
            // IEnumerable<Datum> data = (from c in list.data select c).ToList();
 
             try
@@ -82,7 +82,7 @@ namespace profile.Models
                     //    IndexModel.User = _dataContext.Users.Where(s => s.UserId == userId).FirstOrDefault;
                     //where s.UserId.Equals(userId)
                     //select s;
-                    IndexModel.User = (from m in _unitOfWork.UserRepository.GetAll() where m.userid == userId select m).FirstOrDefault();
+                    IndexModel.User = (from m in await _unitOfWork.UserRepository.GetAll() where m.userid == userId select m).FirstOrDefault();
                     //IndexModel.User = _dataContext.Users.FirstOrDefault(o => o.userid == userId);
                 }
             }
@@ -131,7 +131,7 @@ namespace profile.Models
         //  [HttpPost("UserController/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(User user)
+        public async Task <IActionResult> Register(User user)
         {
 
             string roleid = Request.Query["roleid"].ToString();
@@ -160,12 +160,12 @@ namespace profile.Models
 
 
             //var existing = (from users in _unitOfWork.UserRepository.GetAll() where (users.emailaddress == user.password) select users).FirstOrDefault();
-            var existing = (from users in rep.GetUsers() where (users.emailaddress == user.password) select users).FirstOrDefault();
+            var existing = (from users in await rep.GetUsers() where (users.emailaddress == user.password) select users).FirstOrDefault();
 
 
             if (existing == null)
             {
-                _unitOfWork.UserRepository.Add(user);
+                await _unitOfWork.UserRepository.AddAsyn(user);
                 _unitOfWork.Save();
             }
 
@@ -194,13 +194,13 @@ namespace profile.Models
         //[HttpPost("AuthenticateUser/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AuthenticateUser()
+        public async Task <IActionResult> AuthenticateUser()
         {
 
             string email = Request.Form["EmailAddress"];
             string pass = Request.Form["Password"];
 
-            var user = (from u in rep.GetUsers() where (u.emailaddress == email && u.password == pass) select u).FirstOrDefault();
+            var user = (from u in await rep.GetUsers() where (u.emailaddress == email && u.password == pass) select u).FirstOrDefault();
             //var user = (from u in _unitOfWork.UserRepository.GetAll() where (u.emailaddress == email && u.password == pass) select u).FirstOrDefault();
             if (user != null)
             {
@@ -217,19 +217,19 @@ namespace profile.Models
         }
 
 
-        public IActionResult EditBlogPost(int id)
+        public async Task <IActionResult> EditBlogPost(int id)
         {
             // HttpContext.Session.SetInt32("editBlogId", id);
-            var editPost = (from b in _unitOfWork.blogRepository.GetAll() where b.blogpostid == id select b).FirstOrDefault();
+            var editPost = (from b in await _unitOfWork.blogRepository.GetAll() where b.blogpostid == id select b).FirstOrDefault();
             return View(editPost);
         }
 
         [HttpPost]
-        public IActionResult EditBlogPost(BlogPost posts)
+        public async Task<IActionResult> EditBlogPost(BlogPost posts)
         {
 
             int id = Convert.ToInt32(Request.Form["blogpostid"]);
-            var postUpdate = (from m in _unitOfWork.blogRepository.GetAll() where m.blogpostid == id select m).FirstOrDefault();
+            var postUpdate = (from m in await _unitOfWork.blogRepository.GetAll() where m.blogpostid == id select m).FirstOrDefault();
             postUpdate.title = posts.title;
             postUpdate.content = posts.content;
             postUpdate.posted = posts.posted;
@@ -291,10 +291,10 @@ namespace profile.Models
 
 
         [HttpGet]
-        public IActionResult DisplayFullPost(int id)
+        public async Task<IActionResult> DisplayFullPost(int id)
         {
 
-            var post = (from p in _unitOfWork.blogRepository.GetAll() where p.blogpostid == id select p).FirstOrDefault();
+            var post = (from p in await _unitOfWork.blogRepository.GetAll() where p.blogpostid == id select p).FirstOrDefault();
             if (post != null)
             {
                 List<CommentViewModel> viewComments = new List<CommentViewModel>();
@@ -308,7 +308,7 @@ namespace profile.Models
 
                 foreach (Comment comment in commentList)
                 {
-                    var user = (from u in _unitOfWork.UserRepository.GetAll() where u.userid == comment.userid select u).FirstOrDefault();
+                    var user = (from u in await _unitOfWork.UserRepository.GetAll() where u.userid == comment.userid select u).FirstOrDefault();
                     string commentAuthor = user.firstname + " " + user.lastname;
 
                     CommentViewModel temp = new CommentViewModel
@@ -471,11 +471,11 @@ namespace profile.Models
 
 
         [HttpGet]// GET: /<controller>/
-        public IActionResult EditProfile(int id)
+        public async Task<IActionResult> EditProfile(int id)
         {
 
             HttpContext.Session.SetInt32("editProfile", id);
-            var editProfile = (from b in _unitOfWork.UserRepository.GetAll() where b.userid == id select b).FirstOrDefault();
+            var editProfile = (from b in await _unitOfWork.UserRepository.GetAll() where b.userid == id select b).FirstOrDefault();
 
             if (editProfile == null)
             {
@@ -488,13 +488,13 @@ namespace profile.Models
         }
 
         [HttpPost]// GET: /<controller>/
-        public IActionResult EditProfile(User user)
+        public async Task<IActionResult> EditProfile(User user)
         {
 
             int id = Convert.ToInt32(Request.Form["userid"]);
             // var postUpdate = (from m in _dataContext.BlogPosts where m.BlogPostId == id select m).FirstOrDefault();
             User userToUpdate = new User();
-            userToUpdate = (from u in _unitOfWork.UserRepository.GetAll() where u.userid == id select u).FirstOrDefault();
+            userToUpdate = (from u in await _unitOfWork.UserRepository.GetAll() where u.userid == id select u).FirstOrDefault();
 
             userToUpdate.firstname = user.firstname;
             userToUpdate.lastname = user.lastname;
@@ -540,9 +540,7 @@ namespace profile.Models
             return builder.ToString();
         }
 
-        // GET: /<controller>/
-        // public async Task<IActionResult> CryptoIndex()
-       // ViewResult?
+        
         public ViewResult CryptoIndex(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
 
@@ -559,8 +557,6 @@ namespace profile.Models
             WebClient client = new WebClient();
             client.Headers.Add("X-CMC_PRO_API_KEY", API_KEY);
             client.Headers.Add("Accepts", "application/json");
-
-
             string test = client.DownloadString(URL.ToString());
             RootObject list = JsonConvert.DeserializeObject<RootObject>(test);
 
@@ -625,14 +621,13 @@ namespace profile.Models
             {
                 data = data.Where(s => s.name.ToLower().Contains(searchString.ToLower()));
 
-                                       //|| s.FirstMidName.Contains(searchString));
             }
 
             switch (sortOrder)
             {
 
                 case "price_desc":
-                    data = data.OrderByDescending(s => s.quote.USD.price);//s.quote.USD.volume_24h);
+                    data = data.OrderByDescending(s => s.quote.USD.price);
                     break;
 
                 case "price":
@@ -640,7 +635,7 @@ namespace profile.Models
                     break;
 
                 case "name_desc":
-                    data = data.OrderByDescending(s => s.name);//s.quote.USD.volume_24h);
+                    data = data.OrderByDescending(s => s.name);
                     break;
 
                 case "name":
@@ -648,11 +643,11 @@ namespace profile.Models
                     break;
 
                 case "24hvolume_desc":
-                    data = data.OrderByDescending(s => s.quote.USD.volume_24h);//s.quote.USD.volume_24h);
+                    data = data.OrderByDescending(s => s.quote.USD.volume_24h);
                     break;
 
                 case "24hvolume":
-                    data = data.OrderBy(s => s.quote.USD.volume_24h);//s.quote.USD.volume_24h);
+                    data = data.OrderBy(s => s.quote.USD.volume_24h);
                     break;
 
                 case "1h":
@@ -665,7 +660,7 @@ namespace profile.Models
 
      
                 case "market_desc":
-                    data = data.OrderByDescending(s => s.quote.USD.market_cap);//s.quote.USD.volume_24h);
+                    data = data.OrderByDescending(s => s.quote.USD.market_cap);
                     break;
 
                 case "market":
@@ -673,7 +668,7 @@ namespace profile.Models
                     break;
 
                 case "%7d":
-                    data = data.OrderByDescending(s => s.quote.USD.percent_change_7d);//s.quote.USD.volume_24h);
+                    data = data.OrderByDescending(s => s.quote.USD.percent_change_7d);
                     break;
 
                 case "%7d_desc":
@@ -681,7 +676,7 @@ namespace profile.Models
                     break;
 
                 case "%24h":
-                    data = data.OrderByDescending(s => s.quote.USD.percent_change_24h);//s.quote.USD.volume_24h);
+                    data = data.OrderByDescending(s => s.quote.USD.percent_change_24h);
                     break;
 
                 case "%24h_desc":
@@ -704,11 +699,13 @@ namespace profile.Models
             // return View(list);
         }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
        // [Route("Home/Error")]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
+
 }

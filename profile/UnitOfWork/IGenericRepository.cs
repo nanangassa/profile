@@ -1,8 +1,7 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace profile.Models
 {
@@ -10,7 +9,9 @@ namespace profile.Models
     {
         TEntity Add(TEntity t);
         Task<TEntity> AddAsyn(TEntity t);
-        Task<TEntity> UpdateAsyn(TEntity t, object key);
+        //Task<TEntity> UpdateAsyn(TEntity t, object key);
         void Delete(object id);
+        //Task<ActionResult<TEntity>> GetByID(long id);
+        Task<IEnumerable<TEntity>> GetAll();
     }
 }

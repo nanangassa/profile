@@ -1,17 +1,10 @@
 ﻿
-
-
-//using System;
-//using System.Linq;
-//using System.Linq.Expressions;
-//using Microsoft.EntityFrameworkCore;
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using profile.Models;
 
@@ -31,11 +24,12 @@ namespace profile.UnitOfWork
         }
         // public virtual IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
 
-        public virtual IEnumerable<TEntity> GetAll()
+        //public ActionResult<IEnumerable<User>> GetAll()
+        public virtual async Task<IEnumerable<TEntity>>GetAll()
         {
             IQueryable<TEntity> query = dbSet;
-            return query.ToList();
-
+             return  await query.ToListAsync();
+            //return _context.Users.ToList();
         }
 
 
@@ -98,39 +92,24 @@ namespace profile.UnitOfWork
 
         public virtual void Update(TEntity entity)
         {
-            dbSet.Attach(entity);
+             dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-
-        //TEntity IGenericRepository<TEntity>.Update(TEntity t, object key)
+        //async Task<TEntity> IGenericRepository<TEntity>.UpdateAsyn(TEntity t, object key)
         //{
-
-        //    if (t == null)
-        //        return null;
-        //    TEntity exist = _context.Set<TEntity>().Find(key);
-        //    if (exist != null)
         //    {
-        //        _context.Entry(exist).CurrentValues.SetValues(t);
-        //        _context.SaveChanges();
+        //        if (t == null)
+        //            return null;
+        //        TEntity exist = await _context.Set<TEntity>().FindAsync(key);
+        //        if (exist != null)
+        //        {
+        //            _context.Entry(exist).CurrentValues.SetValues(t);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        return exist;
         //    }
-        //    return exist;
         //}
-
-        async Task<TEntity> IGenericRepository<TEntity>.UpdateAsyn(TEntity t, object key)
-        {
-            {
-                if (t == null)
-                    return null;
-                TEntity exist = await _context.Set<TEntity>().FindAsync(key);
-                if (exist != null)
-                {
-                    _context.Entry(exist).CurrentValues.SetValues(t);
-                    await _context.SaveChangesAsync();
-                }
-                return exist;
-            }
-        }
 
         public virtual void Delete(object id)
         {
@@ -151,7 +130,6 @@ namespace profile.UnitOfWork
             dbSet.Remove(entityToDelete);
         }
 
-        //public Task<int> DeleteAsyn(object id)
         public virtual async Task DeleteAsync(object id)
         {
             TEntity entityToDelete = await dbSet.FindAsync(id);
@@ -161,8 +139,6 @@ namespace profile.UnitOfWork
             }
             dbSet.Remove(entityToDelete);
         }
-
-
     }
 
 }

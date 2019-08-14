@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace profile.Models
 {
     public interface IUserRepository : IDisposable
     {
-        IEnumerable<User> GetUsers();
+        Task<IEnumerable <User>> GetUsers();
         User GetUserByID(int userid);
-        void Add(User user);
-        void Delete(int userid);
+        Task Add(User user);
+        Task Delete(int userid);
         void UpdateUser(User student);
-        void Save();
+        Task Save();
 
     }
 }
