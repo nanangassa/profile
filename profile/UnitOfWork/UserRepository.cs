@@ -15,46 +15,41 @@ namespace profile.Models
             this.context = context;
         }
 
-        public async Task <IEnumerable<User>> GetUsers()
+         async Task<IEnumerable<User>> IUserRepository.GetUsers()
         {
             return await context.Users.ToListAsync();
         }
 
-        public async Task <IEnumerable<User>> GetByID()
+         async Task<User> IUserRepository.GetUserByID(long id)
         {
-            return await context.Users.ToListAsync();
+            return await context.Users.FindAsync(id);
         }
 
-        public User GetUserByID(int id)
+         async Task <User> IUserRepository.Add(User user)
         {
-            //return context.Users.FirstOrDefault(x => x.userid == id);
-            return context.Users.Find(id);
+            await context.Users.AddAsync(user);
+            return user;
         }
 
-        public async Task Add(User student)
+        async Task IUserRepository.Delete(long userid)
         {
-            await context.Users.AddAsync(student);
-        }
-
-        public async Task Delete(int studentID)
-        {
-            User student = await context.Users.FindAsync(studentID);
+            User student = await context.Users.FindAsync(userid);
             context.Users.Remove(student);
         }
 
-        public void UpdateUser(User student)
+        void IUserRepository.UpdateUser(User student)
         {
             context.Entry(student).State = EntityState.Modified;
         }
 
-        public async Task Save()
+         async Task IUserRepository.Save()
         {
-            await context.SaveChangesAsync();
+             await context.SaveChangesAsync();
         }
 
         private bool disposed = false;
 
-        protected virtual void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             if (!this.disposed)
             {
@@ -66,10 +61,11 @@ namespace profile.Models
             this.disposed = true;
         }
 
-        public void Dispose()
+         void IDisposable.Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
 }

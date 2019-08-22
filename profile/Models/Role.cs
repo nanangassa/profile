@@ -12,8 +12,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace profile.Models
 {
-
-    //[Table("role")]
     public class Role
     {
         [Required]
@@ -30,7 +28,6 @@ namespace profile.Models
 		{
 			get;
 			set;
-
 		}
 	}
 }

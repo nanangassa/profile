@@ -13,7 +13,6 @@ namespace profile.Models
         {
             get;
             set;
-
         }
 
         [ForeignKey("userid")]
@@ -25,7 +24,6 @@ namespace profile.Models
         {
             get;
             set;
-
         }
 
         [Required]
@@ -34,7 +32,6 @@ namespace profile.Models
         {
             get;
             set;
-
         }
 
         [Required]
@@ -51,7 +48,6 @@ namespace profile.Models
         {
             get;
             set;
-
         }
 
 
@@ -62,8 +58,7 @@ namespace profile.Models
             set;
         }
 
-        public virtual User user { get; set; }
-
+      //  public virtual User user { get; set; }
     }
 }
 

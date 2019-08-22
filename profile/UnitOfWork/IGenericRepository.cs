@@ -7,11 +7,11 @@ namespace profile.Models
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        TEntity Add(TEntity t);
-        Task<TEntity> AddAsyn(TEntity t);
+        Task <TEntity> Add(TEntity t);
+        void Update(TEntity t);
         //Task<TEntity> UpdateAsyn(TEntity t, object key);
-        void Delete(object id);
-        //Task<ActionResult<TEntity>> GetByID(long id);
-        Task<IEnumerable<TEntity>> GetAll();
+        void Delete(TEntity t);
+        Task <TEntity> GetByID(long id);
+        Task <IEnumerable<TEntity>> GetAll();
     }
 }

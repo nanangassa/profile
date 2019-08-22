@@ -1,124 +1,183 @@
 ﻿@using System.Linq
 @*@model PaginatedList<profile.Models.Datum>*@
-
+<link href="~/lib/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
 <hr />
 <br />
 
-@*@{
-        ViewData["Title"] = "Index";
-    }*@
-@*<p>
-        <a asp-page="About">Create New</a>
-    </p>*@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>24h volume</th>
+                            <th>%1h</th>
+                            <th>%24h</th>
+                            <th>Marketcap</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Position</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>24h volume</th>
+                            <th>%1h</th>
+                            <th>%24h</th>
+                            <th>Marketcap</th>
+
+                        </tr>
+                    </tfoot>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @item.cmc_rank
+                                </td>
+
+                                <td>
+                                    @item.name
+                                </td>
+
+                                <td>
+                                    @item.quote.USD.price
+                                </td>
+                                <td>
+                                    @item.quote.USD.volume_24h
+                                </td>
+                                <td>
+                                    @item.quote.USD.percent_change_1h
+                                </td>
+                                <td>
+                                    @item.quote.USD.percent_change_24h
+                                </td>
+                                @*<td>
+                                        @item.quote.USD.percent_change_7d
+                                    </td>*@
+                                <td>
+                                    @item.quote.USD.market_cap
+                                </td>
+                            </tr>
+                        }
 
 
-@*<tr>
-    <th>
-        <a asp-page="./About" asp-route="About">
-            @Html.DisplayNameFor(model => model.Users[0].crypto)
-        </a>
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model)
-    </th>*@
-@*<th>
-        <a asp-page="./About" asp-route-sortOrder="@Model.DateSort">
-            @Html.DisplayNameFor(model => model.Student[0].EnrollmentDate)
-        </a>
-    </th>*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-<h2>Data provided by coinmarketcap</h2>
+</div>
+<!-- /.container-fluid -->
+@*<h2>Data provided by coinmarketcap</h2>
 
 
-<form asp-controller="Home" asp-action="CryptoIndex">
-    <p>
-        Search: <input type="text" name="SearchString">
-        <input type="submit" value="Filter" />
-    </p>
-</form>
+    <form asp-controller="Home" asp-action="CryptoIndex">
+        <p>
+            Search: <input type="text" name="SearchString">
+            <input class= "btn-primary" type="submit" value="Filter" />
+        </p>
+    </form>*@
 
 @*<p>
         <a asp-action="Create">Create New</a>
     </p>*@
-<table responsive="xl" class="table" style="width:100%">
+@*<table responsive="xl" class="table" style="width:100%">
 
-    <thead>
-        <tr>
-
-
-            <th>
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["RankSortParm"]">rank</a>
-            </th>
-
-            <th>
-
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["NameSortParm"]">name</a>
-
-            </th>
-
-            <th>
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["PriceSortParm"]">price</a>
-            </th>
-
-            <th>
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["24hvolume"]">24h Volume</a>
-            </th>
-            <th>
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["1hSortParm"]"> %1h</a>
-            </th>
-            <th>
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["24h%Parm"]"> %24h</a>
-            </th>
-            <th>
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["7d%Parm"]"> %7d</a>
-
-            </th>
-            <th>
-                <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["MarketCapSortParm"]"> marketcap</a>
-
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (var item in Model)
-        {
-        <tr>
-
-            <td>
-                @item.cmc_rank
-            </td>
+        <thead>
+            <tr>
 
 
-            <td>
-                @item.name
-            </td>
+                <th>
+                    <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["RankSortParm"]">rank</a>
+                </th>
 
-            <td>
-                @item.quote.USD.price
-            </td>
-            <td>
-                @item.quote.USD.volume_24h
-            </td>
-            <td>
-                @item.quote.USD.percent_change_1h
-            </td>
-            <td>
-                @item.quote.USD.percent_change_24h
-            </td>
-            <td>
-                @item.quote.USD.percent_change_7d
-            </td>
-            <td>
-                @item.quote.USD.market_cap
-            </td>
-        </tr>
-        }
+                <th>
 
-</table>
+                    <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["NameSortParm"]">name</a>
+
+                </th>
+
+                <th>
+                    <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["PriceSortParm"]">price</a>
+                </th>
+
+                <th>
+                    <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["24hvolume"]">24h Volume</a>
+                </th>
+                <th>
+                    <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["1hSortParm"]"> %1h</a>
+                </th>
+                <th>
+                    <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["24h%Parm"]"> %24h</a>
+                </th>
+                <th>
+                    <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["7d%Parm"]"> %7d</a>
+
+                </th>
+                <th>
+                    <a asp-action="CryptoIndex" asp-route-sortOrder="@ViewData["MarketCapSortParm"]"> marketcap</a>
+
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @item.cmc_rank
+                    </td>
+
+                    <td>
+                        @item.name
+                    </td>
+
+                    <td>
+                        @item.quote.USD.price
+                    </td>
+                    <td>
+                        @item.quote.USD.volume_24h
+                    </td>
+                    <td>
+                        @item.quote.USD.percent_change_1h
+                    </td>
+                    <td>
+                        @item.quote.USD.percent_change_24h
+                    </td>
+                    <td>
+                        @item.quote.USD.percent_change_7d
+                    </td>
+                    <td>
+                        @item.quote.USD.market_cap
+                    </td>
+                </tr>
+            }
+
+    </table>*@
 
 
 @*<td>
@@ -127,4 +186,10 @@
         <a asp-page="./Delete" asp-route-id="@item.UserId">Delete</a>
     </td>*@
 
+
+<!-- Page level plugins -->
+<script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- Page level custom scripts -->
+<script src="js/demo/datatables-demo.js"></script>
 

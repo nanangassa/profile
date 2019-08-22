@@ -104,7 +104,8 @@ namespace profile
               {
                   app.UseExceptionHandler("/Home/Error");
                   app.UseHsts();
-              }
+
+            }
 
             app.UseSession();
             app.UseMvc();

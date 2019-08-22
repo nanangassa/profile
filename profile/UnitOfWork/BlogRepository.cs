@@ -36,9 +36,9 @@ namespace profile.Models
             _context.BlogPosts.Remove(student);
         }
 
-        public void UpdatePost(BlogPost student)
+        public void UpdatePost(BlogPost user)
         {
-            _context.Entry(student).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
         }
 
         public async Task Save()
@@ -48,7 +48,7 @@ namespace profile.Models
 
         private bool disposed = false;
 
-        protected virtual void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             if (!this.disposed)
             {

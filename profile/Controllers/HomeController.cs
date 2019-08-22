@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using profile.Models;
 using profile.ViewModels;
 using System.Text;
 using Microsoft.AspNetCore.Http;
@@ -12,8 +11,7 @@ using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Threading.Tasks;
-using System.Net.Http;
-using System.Net.Http.Headers;
+
 
 namespace profile.Models
 {
@@ -70,7 +68,6 @@ namespace profile.Models
         public async Task <IActionResult> Blog(BlogPostViewModel IndexModel)
 
         {
-
             IndexModel.BlogPosts = await _unitOfWork.blogRepository.GetAll();
            // IEnumerable<Datum> data = (from c in list.data select c).ToList();
 
@@ -95,9 +92,6 @@ namespace profile.Models
         }
 
 
-
-
-        // [Route("Home/About")]
         public IActionResult About()
         {
             ViewData["Message"] = "Application description page.";
@@ -113,22 +107,18 @@ namespace profile.Models
         }
 
 
-        //  [Route("Home/Privacy")]
         public IActionResult Privacy()
         {
             return View();
         }
 
-        //[HttpGet]// GET: /<controller>
-        //[Route("Home/Register")]
+
         public IActionResult Register()
         {
             return View();
         }
 
-        //[HttpPost("users")]// GET: /<controller>/
-        //  [Route("Home/Register")]
-        //  [HttpPost("UserController/{id}")]
+  
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task <IActionResult> Register(User user)
@@ -165,7 +155,7 @@ namespace profile.Models
 
             if (existing == null)
             {
-                await _unitOfWork.UserRepository.AddAsyn(user);
+                await _unitOfWork.UserRepository.Add(user);
                 _unitOfWork.Save();
             }
 
@@ -236,7 +226,8 @@ namespace profile.Models
             postUpdate.shortdescription = posts.shortdescription;
 
             //save changes to edits
-            _unitOfWork.Save();
+            await _unitOfWork.blogRepository._context.SaveChangesAsync();
+            //_unitOfWork.Save();
             return RedirectToAction("Blog");
         }
 
@@ -246,7 +237,6 @@ namespace profile.Models
             return View();
         }
 
-        [HttpPost]
         public IActionResult AddBlogPost(BlogPost blogPost)
         {
 
@@ -268,7 +258,6 @@ namespace profile.Models
             return RedirectToAction("Blog");
         }
 
-        [HttpPost]
         public IActionResult DisplayFullPost()
         {
             Comment comments = new Comment
@@ -283,14 +272,13 @@ namespace profile.Models
             if (comments != null)
             {
                 //add the comments to the page
-                _unitOfWork.blogRepository._context.Comments.Add(comments);
+                 _unitOfWork.blogRepository._context.Comments.Add(comments);
                 _unitOfWork.Save();
             }
             return RedirectToAction("Blog");
         }
 
 
-        [HttpGet]
         public async Task<IActionResult> DisplayFullPost(int id)
         {
 
@@ -354,7 +342,6 @@ namespace profile.Models
             }
         }
 
-        [HttpGet]
         public IActionResult DeleteBlogPost(int id)
 
         {
@@ -518,6 +505,13 @@ namespace profile.Models
             var badWords = (from badword in _unitOfWork.blogRepository._context.BadWords select badword);
 
             return View(badWords);
+        }
+
+
+        [HttpGet]
+        public IActionResult Chart()
+        {
+            return View();
         }
 
         [HttpGet]

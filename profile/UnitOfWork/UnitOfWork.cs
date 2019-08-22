@@ -6,8 +6,8 @@ namespace profile.Models
     public class UnitOfWork : IDisposable
     {
         private Storecontext _context = new Storecontext();
-        private profile.UnitOfWork.GenericRepository<User> _userRepository;
-        private profile.UnitOfWork.GenericRepository<BlogPost> _blogRepository;
+        private GenericRepository <User> _userRepository;
+        private GenericRepository <BlogPost> _blogRepository;
 
 
         public UnitOfWork()
@@ -21,7 +21,7 @@ namespace profile.Models
             {
                 if (this._userRepository == null)
                 {
-                    this._userRepository = new GenericRepository <User>(_context);
+                    this._userRepository = new GenericRepository <User> (_context);
                 }
                 return _userRepository;
             }
@@ -32,7 +32,6 @@ namespace profile.Models
         {
             get
             {
-
                 if (this._blogRepository == null)
                 {
                     this._blogRepository = new GenericRepository <BlogPost>(_context);
@@ -41,23 +40,9 @@ namespace profile.Models
             }
         }
 
-
-        //public GenericRepository<Crypto> CryptoRepository
-        //{
-        //    get
-        //    {
-
-        //        if (this.cryptoRepository == null)
-        //        {
-        //            this.cryptoRepository = new GenericRepository<Crypto>(context);
-        //        }
-        //        return cryptoRepository;
-        //    }
-        //}
-
         public void Save()
         {
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
         }
 
         private bool disposed = false;

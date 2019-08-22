@@ -1,8 +1,3 @@
-/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.csproj.CoreCompileInputs.cache
-/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.RazorAssemblyInfo.cache
-/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.RazorAssemblyInfo.cs
-/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.AssemblyInfoInputs.cache
-/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.AssemblyInfo.cs
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/profile.deps.json
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/profile.runtimeconfig.json
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/profile.runtimeconfig.dev.json
@@ -10,6 +5,11 @@
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/profile.pdb
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/profile.Views.dll
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/profile.Views.pdb
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.csproj.CoreCompileInputs.cache
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.RazorAssemblyInfo.cache
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.RazorAssemblyInfo.cs
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.AssemblyInfoInputs.cache
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.AssemblyInfo.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.TagHelpers.input.cache
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.TagHelpers.output.cache
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.RazorCoreGenerate.cache
@@ -23,6 +23,7 @@
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/EditProfile.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Index.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Login.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Login1.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Privacy.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Register.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Resume.g.cshtml.cs
@@ -30,6 +31,7 @@
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Shared/Error.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Shared/_CookieConsentPartial.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Shared/_Layout.g.cshtml.cs
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Shared/_MyLayout.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Shared/_ValidationScriptsPartial.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/_ViewImports.g.cshtml.cs
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/_ViewStart.g.cshtml.cs
@@ -40,3 +42,4 @@
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.pdb
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.csproj.CopyComplete
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.csprojAssemblyReference.cache
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Home/Chart.g.cshtml.cs

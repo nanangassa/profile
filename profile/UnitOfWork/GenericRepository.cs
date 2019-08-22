@@ -25,7 +25,7 @@ namespace profile.UnitOfWork
         // public virtual IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
 
         //public ActionResult<IEnumerable<User>> GetAll()
-        public virtual async Task<IEnumerable<TEntity>>GetAll()
+        public virtual async Task <IEnumerable<TEntity>> GetAll()
         {
             IQueryable<TEntity> query = dbSet;
              return  await query.ToListAsync();
@@ -33,7 +33,7 @@ namespace profile.UnitOfWork
         }
 
 
-        public virtual IEnumerable<TEntity> Get(
+        public virtual async Task <List<TEntity>> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")
@@ -53,39 +53,21 @@ namespace profile.UnitOfWork
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return await orderBy(query).ToListAsync();
             }
             else
             {
-                return query.ToList();
+                return await query.ToListAsync();
             }
         }
 
-        public virtual TEntity GetByID(object id)
+        public virtual async Task <TEntity> GetByID(long id)
         {
-            //return _context.Set<TEntity>().Find(id);
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
-        public virtual async Task<ICollection<TEntity>> GetAllAsyn()
+        public virtual async Task <TEntity> Add(TEntity t)
         {
-            IQueryable<TEntity> query = dbSet;
-            // return await _context.Set<TEntity>().ToListAsync(); /no ??
-            return await query.ToListAsync();
-        }
-
-
-        public virtual TEntity Add(TEntity t)
-        {
-            // _context.Set<TEntity>().Add(t); no
-            dbSet.Add(t);
-            //     _context.SaveChanges();
-            return t;
-        }
-
-        public virtual async Task<TEntity> AddAsyn(TEntity t)
-        {
-            // await _context.Set<TEntity>().AddAsync(t);
             await dbSet.AddAsync(t);
             return t;
         }
@@ -111,28 +93,8 @@ namespace profile.UnitOfWork
         //    }
         //}
 
-        public virtual void Delete(object id)
-        {
-            TEntity entityToDelete = dbSet.Find(id);
-            if (_context.Entry(entityToDelete).State == EntityState.Detached)
-            {
-                dbSet.Attach(entityToDelete);
-            }
-            dbSet.Remove(entityToDelete);
-        }
-
         public virtual void Delete(TEntity entityToDelete)
         {
-            if (_context.Entry(entityToDelete).State == EntityState.Detached)
-            {
-                dbSet.Attach(entityToDelete);
-            }
-            dbSet.Remove(entityToDelete);
-        }
-
-        public virtual async Task DeleteAsync(object id)
-        {
-            TEntity entityToDelete = await dbSet.FindAsync(id);
             if (_context.Entry(entityToDelete).State == EntityState.Detached)
             {
                 dbSet.Attach(entityToDelete);

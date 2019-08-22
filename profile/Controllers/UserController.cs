@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using profile.Models;
 
-using System.Diagnostics;
-using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,7 +18,7 @@ namespace myprofile.Controllers
         [Route("api/Users/Index")]
         [ValidateAntiForgeryToken]
         //public async Task<IEnumerable<User>> GetUsers()
-        public async Task<IEnumerable<User>> GetAll()
+        public async Task <IEnumerable<User>> GetAll()
         // public IEnumerable<User> GetUsers()
         //public async IEnumerable<User> Index()
         {
@@ -32,7 +28,7 @@ namespace myprofile.Controllers
         [HttpGet("{id}")]
         [Route("{id:int}")]
         [ValidateAntiForgeryToken]
-        public User Get(int id)
+        public Task <User> Get(int id)
 		{
             return _unitOfWork.UserRepository.GetByID(id);//.FirstOrDefault(x => x.userid == id);
 		}
@@ -40,9 +36,12 @@ namespace myprofile.Controllers
 		[HttpPost]
         [Route("api/Users/Create")]
         [ValidateAntiForgeryToken]
-        public User Post([FromBody]User user)
+        public async Task<ActionResult<User>> Post([FromBody]User user)
 		{
-            return _unitOfWork.UserRepository.Add(user);
+             await _unitOfWork.UserRepository.Add(user);
+             _unitOfWork.Save();
+            return CreatedAtAction(nameof(user), new { id = user.userid }, user);
+
 
         }
 
@@ -57,7 +56,7 @@ namespace myprofile.Controllers
         [HttpDelete("{id}")]
         [Route("api/Users/Delete")]
         [ValidateAntiForgeryToken]
-        public void Delete(int id)
+        public void Delete(User id)
 		{
            _unitOfWork.UserRepository.Delete(id);
 

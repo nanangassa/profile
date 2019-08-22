@@ -37,6 +37,6 @@ namespace profile.Models
             set;
         }
 
-        public virtual BlogPost blogpost { get; set; }
+       // public virtual BlogPost blogpost { get; set; }
     }
 }

@@ -13,14 +13,12 @@ namespace profile.Models
         {
             get;
             set;
-
         }
 
         public int blogpostid
         {
             get;
             set;
-
         }
 
         [ForeignKey("userid")]
@@ -28,7 +26,6 @@ namespace profile.Models
         {
             get;
             set;
-
         }
 
         [Required]
@@ -37,7 +34,6 @@ namespace profile.Models
         {
             get;
             set;
-
         }
     }
 }
