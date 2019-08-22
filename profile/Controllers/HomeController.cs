@@ -237,6 +237,7 @@ namespace profile.Models
             return View();
         }
 
+        [HttpPost]
         public IActionResult AddBlogPost(BlogPost blogPost)
         {
 
@@ -278,7 +279,7 @@ namespace profile.Models
             return RedirectToAction("Blog");
         }
 
-
+        [HttpPost]
         public async Task<IActionResult> DisplayFullPost(int id)
         {
 
@@ -342,6 +343,7 @@ namespace profile.Models
             }
         }
 
+
         public IActionResult DeleteBlogPost(int id)
 
         {
@@ -365,6 +367,7 @@ namespace profile.Models
             {
                 word = HttpContext.Request.Form["badword"]
             };
+
 
             if (badWordToAdd != null)
             {
@@ -474,7 +477,6 @@ namespace profile.Models
 
         }
 
-        [HttpPost]// GET: /<controller>/
         public async Task<IActionResult> EditProfile(User user)
         {
 

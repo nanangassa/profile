@@ -225,7 +225,7 @@ using Microsoft.AspNetCore.Http;
             WriteLiteral("            <div class=\"form-group\">\r\n                <h5>Add a comment</h5>\r\n                ");
             EndContext();
             BeginContext(1876, 389, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3b7049885d8454ab094771eda91421d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "60d29d4b4de247eb91c7a1515712b4bc", async() => {
                 BeginContext(1933, 60, true);
                 WriteLiteral("\r\n                    <input type=\"hidden\" name=\"BlogPostId\"");
                 EndContext();
