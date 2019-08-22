@@ -34,7 +34,7 @@ namespace profile.Models
         {
             modelBuilder.ForNpgsqlUseIdentityColumns();
             base.OnModelCreating(modelBuilder);
-            //var user = modelBuilder.Entity<User>().ToTable("users");
+           // var comment = modelBuilder.Entity<Comment>().ToTable("comments");
         }
  
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

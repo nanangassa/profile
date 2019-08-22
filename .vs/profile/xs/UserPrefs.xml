@@ -1,39 +1,21 @@
 ﻿<Properties StartupConfiguration="{42290E02-C430-4565-8C9F-D5CCB1A7D7D2}|Default">
   <MonoDevelop.Ide.ItemProperties.profile PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Controllers/HomeController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="profile/UnitOfWork/GenericRepository.cs">
     <Files>
-      <File FileName="profile/Controllers/HomeController.cs" Line="353" Column="59" />
-      <File FileName="profile/Views/Home/CryptoIndex.cshtml" />
-      <File FileName="profile/Program.cs" />
-      <File FileName="profile/UnitOfWork/BlogRepository.cs" Line="35" Column="78" />
-      <File FileName="profile/UnitOfWork/UserRepository.cs" Line="31" Column="1" />
-      <File FileName="profile/UnitOfWork/IUserRepository.cs" Line="14" Column="13" />
-      <File FileName="profile/UnitOfWork/IBlogRepository.cs" />
-      <File FileName="profile/UnitOfWork/IGenericRepository.cs" Line="14" Column="24" />
-      <File FileName="profile/Views/Home/About.cshtml" />
-      <File FileName="profile/Views/Home/Index.cshtml" />
-      <File FileName="profile/Views/Home/AddBlogPost.cshtml" />
-      <File FileName="profile/UnitOfWork/GenericRepository.cs" Line="90" Column="38" />
-      <File FileName="profile/UnitOfWork/UnitOfWork.cs" Line="45" Column="21" />
-      <File FileName="profile/UnitOfWork/IUnitOfWork.cs" Line="1" Column="1" />
-      <File FileName="profile/Views/Home/Resume.cshtml" />
-      <File FileName="profile/ViewModels/ViewModels.cs" />
-      <File FileName="profile/Views/Home/Blog.cshtml" />
-      <File FileName="profile/Views/Home/Contact.cshtml" />
-      <File FileName="profile/Models/Storecontext.cs" />
+      <File FileName="profile/Models/Storecontext.cs" Line="37" Column="14" />
       <File FileName="profile/Controllers/CryptoController.cs" />
       <File FileName="profile/Controllers/BlogPostController.cs" />
-      <File FileName="profile/Models/User.cs" />
+      <File FileName="profile/Models/User.cs" Line="18" Column="6" />
       <File FileName="profile/Models/BlogPhotos.cs" />
-      <File FileName="profile/Controllers/UserController.cs" Line="41" Column="20" />
-      <File FileName="profile/Views/Shared/_Layout.cshtml" />
-      <File FileName="profile/Views/Home/Login.cshtml" />
+      <File FileName="profile/Controllers/UserController.cs" Line="1" Column="1" />
+      <File FileName="profile/Views/Shared/_Layout.cshtml" Line="140" Column="29" />
+      <File FileName="profile/Views/Home/Login.cshtml" Line="3" Column="16" />
       <File FileName="profile/Views/Shared/_MyLayout.cshtml" />
       <File FileName="profile/Views/Shared/_CookieConsentPartial.cshtml" />
       <File FileName="../../.nuget/packages/microsoft.aspnetcore.razor.design/2.1.2/build/netstandard2.0/Microsoft.AspNetCore.Razor.Design.CodeGeneration.targets" />
-      <File FileName="profile/Views/Home/DisplayFullPost.cshtml" />
+      <File FileName="profile/Views/Home/DisplayFullPost.cshtml" Line="3" Column="44" />
       <File FileName="profile/Views/Home/EditBlogPost.cshtml" />
-      <File FileName="profile/Views/Home/EditProfile.cshtml" />
+      <File FileName="profile/Views/Home/EditProfile.cshtml" Line="2" Column="1" />
       <File FileName="profile/Views/Home/Privacy.cshtml" />
       <File FileName="profile/Views/Home/Register.cshtml" />
       <File FileName="profile/Views/Home/ViewBadwords.cshtml" />
@@ -50,17 +32,25 @@
       <File FileName="profile/Models/ErrorViewModel.cs" />
       <File FileName="profile/Models/PaginatedList.cs" />
       <File FileName="profile/Models/Role.cs" />
+      <File FileName="profile/Controllers/HomeController.cs" Line="470" Column="95" />
+      <File FileName="profile/UnitOfWork/UnitOfWork.cs" Line="3" Column="1" />
+      <File FileName="profile/UnitOfWork/IUserRepository.cs" Line="1" Column="1" />
+      <File FileName="profile/Views/Home/Contact.cshtml" Line="1" Column="1" />
+      <File FileName="profile/UnitOfWork/BlogRepository.cs" Line="64" Column="1" />
+      <File FileName="profile/UnitOfWork/UserRepository.cs" Line="1" Column="1" />
+      <File FileName="profile/UnitOfWork/GenericRepository.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="profile" expanded="True">
             <Node name="profile" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="HomeController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="UnitOfWork" expanded="True" />
+              <Node name="UnitOfWork" expanded="True">
+                <Node name="GenericRepository.cs" selected="True" />
+              </Node>
+              <Node name="ViewModels" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
                 <Node name="Shared" expanded="True" />
@@ -72,9 +62,12 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="212" column="1" />
+      <Breakpoint file="/Users/TheKing/Projects/profile/profile/Controllers/HomeController.cs" relfile="profile/Controllers/HomeController.cs" line="212" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

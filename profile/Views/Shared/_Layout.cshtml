@@ -139,6 +139,12 @@
                             <span>CoinmarketCap</span>
                         </a>
 
+                        <a class="collapse-item" aria-hidden="true" asp-action="Blog">
+                            <i class="fa fa-blog"></i>
+                            <span>Blog</span>
+                        </a>
+
+
                         @if (@Context.Session.GetString("FN") == null)
     {
 
@@ -152,9 +158,15 @@
                         <i class="fas fa-sign-in-alt"></i>
                         <span>LogIn</span>
                     </a>
+
 }
 else
 {
+
+                    <a class="collapse-item" aria-hidden="true" asp-action="EditProfile">
+                        <i class="fas fa-user-edit"></i>
+                        <span>Edit profile</span>
+                    </a>
 
                     <a class="collapse-item" aria-hidden="true" asp-action="Logout">
                         <i class="fas fa-sign-in-alt"></i>
@@ -162,10 +174,6 @@ else
                     </a>
 }
 
-                        <a class="collapse-item" aria-hidden="true" asp-action="Blog">
-                            <i class="fa fa-blog"></i>
-                            <span>Blog</span>
-                        </a>
 
 
 

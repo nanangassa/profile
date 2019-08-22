@@ -80,7 +80,7 @@ using profile.Models;
             ");
             EndContext();
             BeginContext(685, 192, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f1b1722d3e646f9ad8cf1d4cbe11c7e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07e00209d27a4f418625a5bacf02a591", async() => {
                 BeginContext(758, 115, true);
                 WriteLiteral("\r\n                <i class=\"fas fa-fw fa-tachometer-alt\"></i>\r\n                <span>Dashboard</span>\r\n            ");
                 EndContext();
@@ -223,7 +223,7 @@ using profile.Models;
                 ");
             EndContext();
             BeginContext(5647, 645, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "72770242a28e4776be0974ba2e8bd33c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d5b04834fd744138d799f5815947046", async() => {
                 BeginContext(5748, 537, true);
                 WriteLiteral(@"
                     <div class=""input-group"">
@@ -267,7 +267,7 @@ using profile.Models;
                             ");
             EndContext();
             BeginContext(7016, 706, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fe079e6a48284229b7e6e6956afc41fe", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7236a57d52a54664895dea86eeb5f0f7", async() => {
                 BeginContext(7070, 645, true);
                 WriteLiteral(@"
                                 <div class=""input-group"">

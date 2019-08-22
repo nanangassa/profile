@@ -19,7 +19,7 @@ namespace profile.Models
 
         [Key]
         [Required]
-        public int userid
+        public long userid
         {
             get;
             set;

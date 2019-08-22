@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Threading.Tasks;
+using profile.UnitOfWork;
 
 
 namespace profile.Models
@@ -163,7 +164,7 @@ namespace profile.Models
         }
 
 
-        [HttpGet]// GET: /<controller>/
+        // GET: /<controller>/
                  // [Route("Home/Login")]
         public IActionResult LogIn()
         {
@@ -175,7 +176,6 @@ namespace profile.Models
         //[Route("Home/Login")]
         public IActionResult LogIn(User user)
         {
-            //   HttpContext.Session.SetInt32("UserId", user.UserId);
             //return View();
 
             return RedirectToAction("Blog");
@@ -194,7 +194,7 @@ namespace profile.Models
             //var user = (from u in _unitOfWork.UserRepository.GetAll() where (u.emailaddress == email && u.password == pass) select u).FirstOrDefault();
             if (user != null)
             {
-                HttpContext.Session.SetInt32("UserId", user.userid);
+                HttpContext.Session.SetInt32("UserId", (int)user.userid);
                 HttpContext.Session.SetString("RoleId", user.roleid);
                 HttpContext.Session.SetString("FN", user.firstname);
                 HttpContext.Session.SetString("LN", user.lastname);
@@ -206,6 +206,7 @@ namespace profile.Models
             return RedirectToAction("Login");
         }
 
+        [HttpGet]
 
         public async Task <IActionResult> EditBlogPost(int id)
         {
@@ -279,7 +280,7 @@ namespace profile.Models
             return RedirectToAction("Blog");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> DisplayFullPost(int id)
         {
 
@@ -460,13 +461,13 @@ namespace profile.Models
 
 
 
-        [HttpGet]// GET: /<controller>/
-        public async Task<IActionResult> EditProfile(int id)
+        public async Task <IActionResult> EditProfile()
         {
 
-            HttpContext.Session.SetInt32("editProfile", id);
-            var editProfile = (from b in await _unitOfWork.UserRepository.GetAll() where b.userid == id select b).FirstOrDefault();
+            // HttpContext.Session.SetInt32("editProfile", id);
+            int id = (int)HttpContext.Session.GetInt32("UserId");
 
+            var editProfile = (from b in await _unitOfWork.UserRepository.GetAll() where b.userid == id select b).FirstOrDefault();
             if (editProfile == null)
             {
                 // HandleErrorInfo error = new HandleErrorInfo(
@@ -477,10 +478,11 @@ namespace profile.Models
 
         }
 
+        [HttpPost]
         public async Task<IActionResult> EditProfile(User user)
         {
 
-            int id = Convert.ToInt32(Request.Form["userid"]);
+            long id = Convert.ToInt32(Request.Form["userid"]);
             // var postUpdate = (from m in _dataContext.BlogPosts where m.BlogPostId == id select m).FirstOrDefault();
             User userToUpdate = new User();
             userToUpdate = (from u in await _unitOfWork.UserRepository.GetAll() where u.userid == id select u).FirstOrDefault();
