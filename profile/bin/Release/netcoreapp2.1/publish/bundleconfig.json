@@ -1,0 +1,39 @@
+﻿[
+    {
+        "outputFileName": "wwwroot/css/main.min.css",
+        "inputFiles": [
+            "~/wwwroot/css/",
+            "~/wwwroot/lib/bootstrap/datatables/",
+            "~/wwwroot/lib/bootstrap/fontawesome-free/css/"
+
+
+        ]
+    },
+    {
+        "outputFileName": "wwwroot/js/main.min.js",
+        "inputFiles": [
+            "wwwroot/js/",
+            "wwwroot/js/demo/",
+            "wwwroot/lib/bootstrap/dist/css/",
+            "wwwroot/lib/bootstrap/dist/fonts/",
+            "wwwroot/lib/bootstrap/dist/js/",
+            "wwwroot/lib/bootstrap/chart.js/",
+            "wwwroot/lib/bootstrap/datatables/",
+            "wwwroot/lib/bootstrap/fontawesome-free/js/",
+            "wwwroot/lib/bootstrap/query/dist/",
+            "wwwroot/lib/bootstrap/query-easing/",
+            "wwwroot/lib/bootstrap/query-validation/dist/",
+            "wwwroot/lib/bootstrap/query-validation-unobstrusive/",
+
+
+            "wwwroot/lib/bootstrap/js/"
+
+
+        ],
+        "minify": {
+            "enabled": true,
+            "renameLocals": true
+        },
+        "sourceMap": false
+    }
+]

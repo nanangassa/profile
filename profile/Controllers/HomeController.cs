@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Threading.Tasks;
-using profile.UnitOfWork;
+
 
 
 namespace profile.Models

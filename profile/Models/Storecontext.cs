@@ -28,8 +28,11 @@ namespace profile.Models
 
         public Storecontext()
         {
+            Database.EnsureCreated();
         }
+        
 
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ForNpgsqlUseIdentityColumns();
