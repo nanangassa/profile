@@ -113,7 +113,7 @@ using Microsoft.AspNetCore.Http;
                             ");
             EndContext();
             BeginContext(834, 107, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d28184b2a4ff45629e5a6ea535677042", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b22a05d5a4544f03986a1956944a5216", async() => {
                 BeginContext(920, 6, true);
                 WriteLiteral("Title ");
                 EndContext();
@@ -186,7 +186,7 @@ using Microsoft.AspNetCore.Http;
             WriteLiteral("                ");
             EndContext();
             BeginContext(1392, 127, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "723c8570a1f6406881366544588ff398", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2d5d17dfd18441aba3cd601045a98eef", async() => {
                 BeginContext(1506, 9, true);
                 WriteLiteral("Edit Post");
                 EndContext();
@@ -224,7 +224,7 @@ using Microsoft.AspNetCore.Http;
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(1537, 215, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "613fe5276ca9461a9db609a965ad33af", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0987bc61170949ea8ff51113b74549c0", async() => {
                 BeginContext(1737, 11, true);
                 WriteLiteral("Delete Post");
                 EndContext();
@@ -291,7 +291,7 @@ using Microsoft.AspNetCore.Http;
             WriteLiteral("\r\n    <br />\r\n    <div class=\"text-right\">\r\n        ");
             EndContext();
             BeginContext(1839, 97, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "db3d8c8fbe9c462b98402df4ef91a48c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98251aa37ffc4cdfa23686403d1e32cc", async() => {
                 BeginContext(1920, 12, true);
                 WriteLiteral("Add BlogPost");
                 EndContext();

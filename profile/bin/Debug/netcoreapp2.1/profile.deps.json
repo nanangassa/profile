@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "4c7fd24b2eac42de00c74dc712b6559a47723a88"
+    "signature": "c2935328fea0fa1b9f1036147c8d7f021924bb8e"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.1": {
       "profile/1.0.0": {
         "dependencies": {
+          "BlockchainAPI": "4.0.0",
           "BuildBundlerMinifier": "2.9.406",
           "Dapper": "1.60.6",
           "Microsoft.AspNet.Web.Optimization": "1.1.3",
@@ -60,6 +61,22 @@
           "lib/Antlr3.Runtime.dll": {}
         }
       },
+      "BlockchainAPI/4.0.0": {
+        "dependencies": {
+          "CompareNETObjects": "3.6.0",
+          "Microsoft.NETCore.App": "2.1.0",
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/netcoreapp1.1/BlockchainAPI.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp1.1/BlockchainAPI.dll": {}
+        }
+      },
       "BouncyCastle.NetCore/1.8.3": {
         "dependencies": {
           "NETStandard.Library": "2.0.3",
@@ -77,6 +94,17 @@
         }
       },
       "BuildBundlerMinifier/2.9.406": {},
+      "CompareNETObjects/3.6.0": {
+        "runtime": {
+          "lib/netstandard1.6/Compare-NET-Objects-Core.dll": {
+            "assemblyVersion": "3.6.0.0",
+            "fileVersion": "3.6.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.6/Compare-NET-Objects-Core.dll": {}
+        }
+      },
       "Dapper/1.60.6": {
         "dependencies": {
           "System.Data.SqlClient": "4.5.1",
@@ -3497,6 +3525,13 @@
       "path": "antlr/3.4.1.9004",
       "hashPath": "antlr.3.4.1.9004.nupkg.sha512"
     },
+    "BlockchainAPI/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6IQRGeWfTQljLLKXdstoB4QHnKOyXUkDOEsKbNeBwFpCoKz4iEfx/ZBxl5rrn0exuWnGiw1Hvj0vDM2d9zogyg==",
+      "path": "blockchainapi/4.0.0",
+      "hashPath": "blockchainapi.4.0.0.nupkg.sha512"
+    },
     "BouncyCastle.NetCore/1.8.3": {
       "type": "package",
       "serviceable": true,
@@ -3510,6 +3545,13 @@
       "sha512": "sha512-jNgso4DDVEDTmM2O41WWI8OMC5CV0yMqMK/cRMJldO64XzC2PDdg+FV/GHqN6qh3KDuTKcDlB/t7F2WBWrNOgQ==",
       "path": "buildbundlerminifier/2.9.406",
       "hashPath": "buildbundlerminifier.2.9.406.nupkg.sha512"
+    },
+    "CompareNETObjects/3.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WaOGlpqGUTVX8hSAsrrKFr4DzZAuIcIht2uM8uM/tEOapERWMdPS3KZW5+kQMGSozXH1es0xwoyOVd7i1sA0Bg==",
+      "path": "comparenetobjects/3.6.0",
+      "hashPath": "comparenetobjects.3.6.0.nupkg.sha512"
     },
     "Dapper/1.60.6": {
       "type": "package",
