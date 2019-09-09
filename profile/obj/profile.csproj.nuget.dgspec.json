@@ -39,6 +39,10 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "BlockchainAPI": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "BuildBundlerMinifier": {
               "target": "Package",
               "version": "[2.9.406, )"

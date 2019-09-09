@@ -83,8 +83,7 @@ namespace profile
                 .AddEntityFrameworkNpgsql().AddMvc();
             services.BuildServiceProvider();
             services.AddDefaultIdentity<IdentityUser>()
-        // .AddDefaultUI(UIFramework.Bootstrap4)
-        .AddEntityFrameworkStores<Storecontext>();
+            .AddEntityFrameworkStores<Storecontext>();
 
             services.Configure<IdentityOptions>(options =>
             {

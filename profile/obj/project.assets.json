@@ -11,6 +11,20 @@
           "lib/Antlr3.Runtime.dll": {}
         }
       },
+      "BlockchainAPI/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "CompareNETObjects": "3.6.0",
+          "Microsoft.NETCore.App": "1.1.1",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netcoreapp1.1/BlockchainAPI.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.1/BlockchainAPI.dll": {}
+        }
+      },
       "BouncyCastle.NetCore/1.8.3": {
         "type": "package",
         "dependencies": {
@@ -29,6 +43,15 @@
         "type": "package",
         "build": {
           "build/BuildBundlerMinifier.targets": {}
+        }
+      },
+      "CompareNETObjects/3.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.6/Compare-NET-Objects-Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Compare-NET-Objects-Core.dll": {}
         }
       },
       "Dapper/1.60.6": {
@@ -4584,6 +4607,18 @@
         "lib/Antlr3.Runtime.pdb"
       ]
     },
+    "BlockchainAPI/4.0.0": {
+      "sha512": "6IQRGeWfTQljLLKXdstoB4QHnKOyXUkDOEsKbNeBwFpCoKz4iEfx/ZBxl5rrn0exuWnGiw1Hvj0vDM2d9zogyg==",
+      "type": "package",
+      "path": "blockchainapi/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blockchainapi.4.0.0.nupkg.sha512",
+        "blockchainapi.nuspec",
+        "lib/netcoreapp1.1/BlockchainAPI.dll"
+      ]
+    },
     "BouncyCastle.NetCore/1.8.3": {
       "sha512": "jAy3uHN1U9DpoT/TgLqDTEhlccn/4doOVxhSmmNsnoSsGfHT9Lwr634ac9D0YFujAhNw61nWF4UIpHyzv0aQww==",
       "type": "package",
@@ -4631,6 +4666,35 @@
         "tools/netstandard1.3/BundlerMinifier.dll",
         "tools/netstandard1.3/NUglify.dll",
         "tools/netstandard1.3/Newtonsoft.Json.dll"
+      ]
+    },
+    "CompareNETObjects/3.6.0": {
+      "sha512": "WaOGlpqGUTVX8hSAsrrKFr4DzZAuIcIht2uM8uM/tEOapERWMdPS3KZW5+kQMGSozXH1es0xwoyOVd7i1sA0Bg==",
+      "type": "package",
+      "path": "comparenetobjects/3.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/AppReadme/Compare-NET-Objects-Help.chm",
+        "comparenetobjects.3.6.0.nupkg.sha512",
+        "comparenetobjects.nuspec",
+        "lib/net35/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net35/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net40/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net40/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net45/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net45/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net451/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net451/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net452/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net452/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net46/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net46/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/netstandard1.6/Compare-NET-Objects-Core.dll",
+        "lib/netstandard1.6/Compare-NET-Objects-Core.xml",
+        "lib/portable-net40+sl5+win8+wp8/KellermanSoftware.Compare-NET-Objects-Portable.dll",
+        "lib/portable-net40+sl5+win8+wp8/KellermanSoftware.Compare-NET-Objects-Portable.xml",
+        "readme.txt"
       ]
     },
     "Dapper/1.60.6": {
@@ -12433,6 +12497,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "BlockchainAPI >= 4.0.0",
       "BuildBundlerMinifier >= 2.9.406",
       "Dapper >= 1.60.6",
       "Microsoft.AspNet.Web.Optimization >= 1.1.3",
@@ -12491,6 +12556,10 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "BlockchainAPI": {
+            "target": "Package",
+            "version": "[4.0.0, )"
+          },
           "BuildBundlerMinifier": {
             "target": "Package",
             "version": "[2.9.406, )"
