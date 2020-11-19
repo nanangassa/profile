@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{42290E02-C430-4565-8C9F-D5CCB1A7D7D2}|Default">
-  <MonoDevelop.Ide.ItemProperties.profile PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="profile/Views/Shared/_Layout.cshtml">
+  <MonoDevelop.Ide.ItemProperties.profile PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="profile/DeployScript.sh">
     <Files>
       <File FileName="profile/Models/Storecontext.cs" Line="31" Column="35" />
       <File FileName="profile/Controllers/CryptoController.cs" />
@@ -8,7 +8,7 @@
       <File FileName="profile/Models/User.cs" />
       <File FileName="profile/Models/BlogPhotos.cs" />
       <File FileName="profile/Controllers/UserController.cs" />
-      <File FileName="profile/Views/Shared/_Layout.cshtml" Line="374" Column="64" />
+      <File FileName="profile/Views/Shared/_Layout.cshtml" />
       <File FileName="profile/Views/Home/Login.cshtml" />
       <File FileName="profile/Views/Shared/_MyLayout.cshtml" />
       <File FileName="profile/Views/Shared/_CookieConsentPartial.cshtml" />
@@ -49,7 +49,22 @@
       <File FileName="profile/appsettings.json" />
       <File FileName="profile/Properties/launchSettings.json" />
       <File FileName="profile/Views/Home/About.cshtml" />
+      <File FileName="profile/Dockerfile" />
+      <File FileName="profile/UnitOfWork/IGenericRepository.cs" />
+      <File FileName="profile/mono_crash.11a6748113.0.json" />
+      <File FileName="profile/DeployScript.sh" Line="16" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="profile" expanded="True">
+            <Node name="profile" expanded="True">
+              <Node name="DeployScript.sh" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

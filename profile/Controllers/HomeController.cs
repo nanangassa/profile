@@ -25,7 +25,7 @@ namespace profile.Models
 
     public class HomeController : Controller
     {
-        private IUserRepository rep;
+        readonly IUserRepository rep;
         private IBlogRepository blog;
         //private readonly HttpClient client = new HttpClient();
 
