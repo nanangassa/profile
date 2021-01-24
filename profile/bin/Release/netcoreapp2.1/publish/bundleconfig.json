@@ -2,9 +2,9 @@
     {
         "outputFileName": "wwwroot/css/main.min.css",
         "inputFiles": [
-            "~/wwwroot/css/",
-            "~/wwwroot/lib/bootstrap/datatables/",
-            "~/wwwroot/lib/bootstrap/fontawesome-free/css/"
+            "wwwroot/css/",
+            "wwwroot/lib/bootstrap/datatables/",
+            "wwwroot/lib/bootstrap/fontawesome-free/css/"
 
 
         ]

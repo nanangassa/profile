@@ -27,13 +27,13 @@ namespace profile.UnitOfWork
         //public ActionResult<IEnumerable<User>> GetAll()
         public virtual async Task <IEnumerable<TEntity>> GetAll()
         {
-            IQueryable<TEntity> query = dbSet;
-             return  await query.ToListAsync();
+            //IQueryable<TEntity> query = dbSet;
+             return  await dbSet.ToListAsync();
             //return _context.Users.ToList();
         }
 
 
-        public virtual async Task <List<TEntity>> Get(
+        public async Task <List<TEntity>> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")
@@ -69,6 +69,7 @@ namespace profile.UnitOfWork
         public virtual async Task <TEntity> Add(TEntity t)
         {
             await dbSet.AddAsync(t);
+            _context.Entry(t).State = EntityState.Added;
             return t;
         }
 

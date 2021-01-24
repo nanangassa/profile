@@ -8,7 +8,9 @@ namespace profile.Models
 {
     public class BlogRepository : IBlogRepository, IDisposable
     {
-        private Storecontext _context;
+        private readonly Storecontext _context;
+        //internal DbSet<BlogPost>  _dbSet;
+
 
         public BlogRepository(Storecontext context)
         {
@@ -27,6 +29,7 @@ namespace profile.Models
 
         public async Task Add(BlogPost student)
         {
+            _context.Entry(student).State = EntityState.Added;
             await _context.BlogPosts.AddAsync(student);
         }
 
@@ -34,10 +37,13 @@ namespace profile.Models
         {
             BlogPost student = await _context.BlogPosts.FindAsync(studentID);
             _context.BlogPosts.Remove(student);
+            _context.Entry(student).State = EntityState.Deleted;
+
         }
 
         public void UpdatePost(BlogPost user)
         {
+            _context.Attach(user);
             _context.Entry(user).State = EntityState.Modified;
         }
 

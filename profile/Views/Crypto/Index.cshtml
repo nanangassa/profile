@@ -1,0 +1,60 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@*@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using Microsoft.AspNetCore.Http*@
+@{
+
+    @*string content = ...; // String containing the json data.
+    var json = JObject.Parse(content);*@
+
+}
+
+
+@model profile.Models.CreateWallet
+
+
+
+<br>
+<br>
+<div class="container">
+    <h1>BTC Wallet Details</h1>
+    <hr />
+
+    <form asp-controller="Crypto" asp-action="Index" method="get" />
+    <div class="form-group">
+        <input type="hidden" name="public" class="form-control" required />
+        <fieldset>
+            <div class="form-group">
+                <label>Wallet address</label>
+                @Html.DisplayFor(modelItem => modelItem.original_address)
+                @*<p>@Model.original_address.ToString()</p><br>*@
+                @*@Html.Raw(JsonConvert.SerializeObject(Student.CreateEmpty(), Formatting.Indented))*@
+
+            </div>
+
+            <div class="form-group">
+                <label>Public key</label>
+                @Html.DisplayFor(modelItem => modelItem.@public)
+
+            </div>
+
+            <div class="form-group">
+                <label>Public key</label>
+                @Html.DisplayFor(modelItem => modelItem.@private)
+
+            </div>
+
+            @*<div class="form-group">
+            <label for="text">Check a BTC wallet balance</label>
+            <output class="form-control" type="text" name="shortdescription" asp-route-id="@Model.Value==public" data-length="5000" nameplaceholder="Short Description" required />
+        </div>*@
+
+        </fieldset>
+    </div>
+    @*<button type="submit" class="btn btn-primary">Add Post</button>*@
+    <br /><br />
+
+</div>

@@ -48,3 +48,5 @@
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/mono_crash.11a6748113.0.json
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.csproj.CoreCompileInputs.cache
 /Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/profile.genruntimeconfig.cache
+/Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/mono_crash.1ffcf07473.0.json
+/Users/TheKing/Projects/profile/profile/obj/Release/netcoreapp2.1/Razor/Views/Crypto/Index.cshtml.g.cs

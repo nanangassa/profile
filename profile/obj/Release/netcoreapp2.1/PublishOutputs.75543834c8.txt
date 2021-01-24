@@ -1784,6 +1784,7 @@
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/publish/appsettings.json
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/publish/bundleconfig.json
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/publish/mono_crash.11a6748113.0.json
+/Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/publish/mono_crash.1ffcf07473.0.json
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/publish/profile.dll
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/publish/profile.runtimeconfig.json
 /Users/TheKing/Projects/profile/profile/bin/Release/netcoreapp2.1/publish/profile.pdb
